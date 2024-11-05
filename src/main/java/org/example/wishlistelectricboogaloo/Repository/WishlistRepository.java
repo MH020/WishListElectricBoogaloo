@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 @Repository
@@ -16,12 +17,23 @@ public class WishlistRepository {
     }
 
     //create a wishlist
-    /*public createWishlist( String name) {
-
-    String SQlInsertWishlist ="insert into wishlist (name,) values(?)";
+    public int createWishlist(String name, int profileId) {
+        String SQLInsertWishlist = "insert into wishlist (name) values(?)";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(SQLInsertWishlist, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, profileId);
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
-    Public GetUserid(){
-        String SQLGetUser = "SELECT FROM profile WHERE NAME = ?";
-        try (PreparedStatement statement =conn.prepareStatement(Statement.RETURN_GENERATED_KEYS))
-    }*/
-}
+
+
+    }
+
