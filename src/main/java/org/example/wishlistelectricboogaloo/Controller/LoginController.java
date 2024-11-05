@@ -17,12 +17,12 @@ public class LoginController {
 
     @PostMapping("")
     public String postLogin(){
-        return "redirect: myHomepage"
+        return "redirect: myHomepage";
     }
 
     @GetMapping("/newProfile")
     public String getNewProfilePage(){
-        return "newProfile"
+        return "newProfile";
     }
 
     @PostMapping("/newProfile")
