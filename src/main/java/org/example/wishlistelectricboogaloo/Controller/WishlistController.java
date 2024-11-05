@@ -18,14 +18,14 @@ public class WishlistController {
     @GetMapping("/addWishList")
     public String addWishList(Model model) {
         model.addAttribute("wishlist", new Wishlist());
-        return "addWishList";
+        return "mywishlist";
 
     }
 
     @PostMapping("/addWishList")
     public String addWishList(Wishlist wishlist) {
         wishlistService.createWishlist(wishlist);
-        return "redirect:/addWishList";
+        return "redirect:/mywishlist";
     }
 
 
