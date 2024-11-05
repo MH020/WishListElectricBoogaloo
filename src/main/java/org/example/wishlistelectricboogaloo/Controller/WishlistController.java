@@ -40,7 +40,7 @@ public class WishlistController {
     @GetMapping("/addWishList")
     public String addWishList(Model model) {
         model.addAttribute("wishlist", new Wishlist());
-        return "myWishlist";
+        return "myHomepage";
 
     }
 
