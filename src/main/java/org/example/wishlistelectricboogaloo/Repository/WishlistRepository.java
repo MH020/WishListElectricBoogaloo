@@ -18,7 +18,7 @@ public class WishlistRepository {
 
     //create a wishlist
     public int createWishlist(String name, int profileId) {
-        String SQLInsertWishlist = "insert into wishlist (name) values(?)";
+        String SQLInsertWishlist = "insert into wishlist (name,profileId) values(?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLInsertWishlist, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name);
