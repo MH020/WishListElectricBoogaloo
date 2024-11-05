@@ -34,6 +34,24 @@ public class WishlistRepository {
         }
         return 0;
     }
+    public void deleteWishlist(int id){
+        int updatedRows = 0;
+        String SQlDeleteFromWishlist = "Delete from Wishlist where id = ?";
+        String SQlDeleteFromJoinedTable ="DELETE FROM Joined wishlist and products where id = ?";
+
+        try (PreparedStatement preparedStatement = conn.prepareStatement(SQlDeleteFromWishlist)) {
+            preparedStatement.setInt(1, id);
+            updatedRows = preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try (PreparedStatement preparedStatement = conn.prepareStatement(SQlDeleteFromJoinedTable)) {
+            preparedStatement.setInt(1, id);
+            updatedRows = preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     }

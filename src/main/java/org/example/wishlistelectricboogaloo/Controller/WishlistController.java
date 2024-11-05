@@ -5,6 +5,7 @@ import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +24,8 @@ public class WishlistController {
     }
 
     @PostMapping("/delete/{wishlistID}")
-    public String deleteWishlist(){
+    public String deleteWishlist(@PathVariable int wishlistID){
+        wishlistService.deleteWishlist(wishlistID);
         return "redirect: myHomepage";
     }
 
