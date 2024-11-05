@@ -1,4 +1,4 @@
 package org.example.wishlistelectricboogaloo.Repository;
 
-public class Repository {
+public class WishlistRepository {
 }
