@@ -86,8 +86,8 @@ INSERT INTO Product (product_name, description, price, market_id) VALUES ('Vinyl
 INSERT INTO Product (product_name, description, price, market_id) VALUES ('Polaroid Camera', 'Instant camera', 99.99, 2);
 
 -- Insert into Wishlist
-INSERT INTO Wishlist (name, profile_id) VALUES ('John\'s Wishlist', 1);
-INSERT INTO Wishlist (name, profile_id) VALUES ('Jane\'s Wishlist', 2);
+INSERT INTO Wishlist (name, profile_id) VALUES ('John''s Wishlist', 1);
+INSERT INTO Wishlist (name, profile_id) VALUES ('Jane''s Wishlist', 2);
 
 -- Insert into Joined_Wishlist_Products
 INSERT INTO Joined_Wishlist_Products (wishlist_id, product_id) VALUES (1, 1);
