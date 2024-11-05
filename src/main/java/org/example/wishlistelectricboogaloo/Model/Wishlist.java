@@ -2,7 +2,8 @@ package org.example.wishlistelectricboogaloo.Model;
 
 public class Wishlist {
    private int id;
-   private String City;
+   private int profileId;
+   private String name;
 
    public Wishlist() {
    }
@@ -13,10 +14,16 @@ public class Wishlist {
     public void setId(int id) {
         this.id = id;
     }
-    public String getCity() {
-        return City;
+    public int getProfileId() {
+        return profileId;
     }
-    public void setCity(String City) {
-        this.City = City;
+    public void setProfileId(int profileId) {
+        this.profileId = profileId;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String City) {
+        this.name = City;
     }
 }

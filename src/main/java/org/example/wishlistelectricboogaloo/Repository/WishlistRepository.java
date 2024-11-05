@@ -1,6 +1,7 @@
 package org.example.wishlistelectricboogaloo.Repository;
 
 import org.example.wishlistelectricboogaloo.ConnectionManager;
+import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -17,12 +18,12 @@ public class WishlistRepository {
     }
 
     //create a wishlist
-    public int createWishlist(String name, int profileId) {
-        String SQLInsertWishlist = "insert into wishlist (name,profileId) values(?,?)";
+    public int createWishlist(Wishlist wishlist) {
+        String SQLInsertWishlist = "insert into wishlist (name,profileid) values(?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLInsertWishlist, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, profileId);
+            preparedStatement.setString(1, wishlist.getName());
+            preparedStatement.setInt(2, wishlist.getProfileId());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
