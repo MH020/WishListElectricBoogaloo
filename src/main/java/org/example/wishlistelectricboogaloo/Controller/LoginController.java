@@ -17,7 +17,7 @@ public class LoginController {
 
     @PostMapping("")
     public String postLogin(){
-        return "redirect: myHomepage";
+        return "redirect:/homepage/{profileID}";
     }
 
     @GetMapping("/newProfile")
@@ -27,7 +27,7 @@ public class LoginController {
 
     @PostMapping("/newProfile")
     public String postNewUser (){
-        return "redirect: myHomePage";
+        return "redirect:/homepage/{profileID}";
     }
 
 }

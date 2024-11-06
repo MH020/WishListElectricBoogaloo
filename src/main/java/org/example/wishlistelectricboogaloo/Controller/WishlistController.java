@@ -31,11 +31,11 @@ public class WishlistController {
 
     @PostMapping("/update/{wishlistID}/removeWish/{productID}")
     public String updateWishlistRemoveProduct(){
-        return "redirect: myWishlist";
+        return "redirect: /homepage/{profileID}";
     }
 
     @PostMapping("/update/{wishlistID}/addWish")
     public String updateWishlistAddProduct(){
-        return "redirect: market";
+        return "redirect: homepage/{profileID}/market";
     }
 }
