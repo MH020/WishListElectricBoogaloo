@@ -1,11 +1,10 @@
 package org.example.wishlistelectricboogaloo.Model;
 
 public class Product {
-    int productId;
-    String productName;
-    String productDescription;
-    double productPrice;
-    //int marketId;
+    private int productId;
+    private String productName;
+    private String productDescription;
+    private double productPrice;
 
     //Getters
     public int getProductId() {
@@ -38,6 +37,14 @@ public class Product {
     }
 
     public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    //Constructor
+    public Product() {
+        this.productId = productId;
+        this.productName = productName;
+        this.productDescription = productDescription;
         this.productPrice = productPrice;
     }
 
