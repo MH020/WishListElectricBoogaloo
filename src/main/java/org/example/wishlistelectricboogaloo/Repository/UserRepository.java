@@ -30,23 +30,32 @@ public class UserRepository {
     }
 
     //authenticate method
-    public boolean authenticateUser(String Username, String Password) {
+    public User authenticateUser(String Username, String Password) {
         String SQLcheck = "SELECT * FROM User WHERE Username = ? AND Password = ?";
-
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQLcheck)) {
             preparedStatement.setString(1, Username);
             preparedStatement.setString(2, Password);
 
             //sees if there is a resultSet in the database that matches the username and password entered by the user and returns true if there is
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                return resultSet.next();
+            if (resultSet.next()) {
+                User user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setUsername(resultSet.getString("username"));
+                user.setPassword(resultSet.getString("password"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPhoneNumber(resultSet.getString("phoneNumber"));
+                return user;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+        return null;
+    }
+
     public int getUserId(HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user != null) {
