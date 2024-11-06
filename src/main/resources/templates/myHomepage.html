@@ -18,7 +18,13 @@
         <li><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}(profileID = 1, wishlistID = 1)}">My wishlist</a></li>
     </ul>
 
-    <p> opret ny ønskeliste</p>
+    <p> Create new wishlist</p>
+    <form method="post" th:action="@{/homepage/{profileID}/addWishList (profileID = 1)}" th:object="${wishlist}" style="display:inline;">
+        <label for="option1">Name:</label>
+        <input type="text" id="option1" name="name" th:value="${wishlist.name}"> <br>
+        <button type="submit">submit</button>
+    </form>
+
     <table>
         <tr>
             <th>My Wishlists:</th>

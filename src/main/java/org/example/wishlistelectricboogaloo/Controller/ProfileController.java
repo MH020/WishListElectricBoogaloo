@@ -4,9 +4,7 @@ import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/homepage/{profileID}")
@@ -29,17 +27,17 @@ public class ProfileController {
 
     @PostMapping("/logout")
     public String postLogout(){
-        return "redirect: loginPage";
+        return "redirect: /login";
     }
 
     @PostMapping("/deleteAccount")
     public String postDeleteAccount(){
-        return "redirect: loginPage";
+        return "redirect: /login";
     }
 
     @PostMapping("/addWishList")
-    public String addWishList(Wishlist wishlist) {
-        wishlistService.createWishlist(wishlist);
-        return "redirect:/myWishlist";
+    public String addWishList(@ModelAttribute Wishlist wishlist, @PathVariable int profileID) {
+        wishlistService.createWishlist(wishlist, profileID);
+        return "redirect:/homepage/{profileID}";
     }
 }

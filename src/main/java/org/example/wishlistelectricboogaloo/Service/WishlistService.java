@@ -13,8 +13,8 @@ public class WishlistService {
     }
 
     // Create a new wishlist
-    public int createWishlist(Wishlist wishlist) {
-        return wishlistRepository.createWishlist(wishlist);
+    public int createWishlist(Wishlist wishlist, int profileID) {
+        return wishlistRepository.createWishlist(wishlist, profileID);
     }
     //delete a wishlist
     public void deleteWishlist(int id) {
