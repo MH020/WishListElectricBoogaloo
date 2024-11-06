@@ -1,5 +1,8 @@
 package org.example.wishlistelectricboogaloo.Repository;
+import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.ConnectionManager;
+import org.example.wishlistelectricboogaloo.Model.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,6 +46,13 @@ public class UserRepository {
             return false;
         }
 
+    }
+    public int getUserId(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            return user.getId();
+        }
+        return -1;
     }
 
 
