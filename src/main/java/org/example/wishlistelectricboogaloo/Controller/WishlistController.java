@@ -38,18 +38,4 @@ public class WishlistController {
     public String updateWishlistAddProduct(){
         return "redirect: market";
     }
-
-    @GetMapping("/addWishList")
-    public String addWishList(Model model) {
-        model.addAttribute("wishlist", new Wishlist());
-        return "myHomepage";
-
-    }
-
-    @PostMapping("/addWishList")
-    public String addWishList(Wishlist wishlist) {
-        wishlistService.createWishlist(wishlist);
-        return "redirect:/myWishlist";
-    }
-
 }
