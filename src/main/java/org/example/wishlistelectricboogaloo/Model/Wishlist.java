@@ -43,7 +43,7 @@ public class Wishlist {
     public String getCity() {
        return name;
     }
-    public void setName(String City) {
+    /*public void setName(String City) {
        this.name = City;
-    }
+    }*/
 }

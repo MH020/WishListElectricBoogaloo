@@ -2,7 +2,7 @@ package org.example.wishlistelectricboogaloo.Model;
 
 import java.util.List;
 
-public class profile {
+public class Profile {
     private int id;
     private String profile;
     private String password;
