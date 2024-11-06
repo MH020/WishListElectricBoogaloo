@@ -9,6 +9,7 @@ import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -53,4 +54,6 @@ public class ProfileController {
         wishlistService.createWishlist(wishlist);
         return "redirect:/myWishlist";
     }
+
+
 }

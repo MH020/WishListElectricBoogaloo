@@ -38,4 +38,11 @@ public class WishlistController {
     public String updateWishlistAddProduct(){
         return "redirect: market";
     }
+
+    @GetMapping("/view/{wishListID}")
+    public String getWishlist(@PathVariable int wishlistID, Model model){
+        Wishlist wishlist = wishlistService.getWishlist(wishlistID);
+        model.addAttribute("wishlist", wishlist);
+        return "myWishlist";
+    }
 }
