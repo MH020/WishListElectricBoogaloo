@@ -9,11 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @org.springframework.stereotype.Repository
-public class UserRepository {
+public class ProfileRepository {
 
     private final Connection conn;
 
-    public UserRepository(ConnectionManager connectionManager) {
+    public ProfileRepository(ConnectionManager connectionManager) {
         this.conn = connectionManager.getConnection();
     }
     //create method

@@ -2,7 +2,7 @@ package org.example.wishlistelectricboogaloo.Controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.Model.Profile;
-import org.example.wishlistelectricboogaloo.Service.UserService;
+import org.example.wishlistelectricboogaloo.Service.ProfileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-    private final UserService UserService;
+    private final ProfileService ProfileService;
     private final HttpSession session;
 
-    public LoginController(UserService UserService, HttpSession session) {
-        this.UserService = UserService;
+    public LoginController(ProfileService ProfileService, HttpSession session) {
+        this.ProfileService = ProfileService;
         this.session = session;
     }
 
@@ -29,7 +29,7 @@ public class LoginController {
         //if the profile is authenticated, the profile is redirected to their homepage
 
         try {
-            Profile realUser = UserService.authenticateUser(profile.getUsername(), profile.getPassword());
+            Profile realUser = ProfileService.authenticateUser(profile.getUsername(), profile.getPassword());
 
 
         if (realUser != null) {
@@ -53,6 +53,4 @@ public class LoginController {
     public String postNewUser (){
         return "redirect: myHomePage";
     }
-
-
 }

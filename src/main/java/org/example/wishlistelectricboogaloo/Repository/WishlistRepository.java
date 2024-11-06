@@ -52,7 +52,4 @@ public class WishlistRepository {
             e.printStackTrace();
         }
     }
-
-
-    }
-
+}
