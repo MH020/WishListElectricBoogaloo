@@ -31,7 +31,7 @@ public class UserRepository {
 
     //authenticate method
     public User authenticateUser(String Username, String Password) {
-        String SQLcheck = "SELECT * FROM User WHERE Username = ? AND Password = ?";
+        String SQLcheck = "SELECT * FROM profile WHERE username = ? AND password = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQLcheck)) {
             preparedStatement.setString(1, Username);
             preparedStatement.setString(2, Password);
@@ -40,11 +40,11 @@ public class UserRepository {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
             if (resultSet.next()) {
                 User user = new User();
-                user.setId(resultSet.getInt("id"));
+                user.setId(resultSet.getInt("profile_id"));
                 user.setUsername(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
                 user.setEmail(resultSet.getString("email"));
-                user.setPhoneNumber(resultSet.getString("phoneNumber"));
+                user.setPhoneNumber(resultSet.getString("phone"));
                 return user;
             }
             } catch (SQLException e) {
