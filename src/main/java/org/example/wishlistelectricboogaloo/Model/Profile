@@ -2,12 +2,12 @@ package org.example.wishlistelectricboogaloo.Model;
 
 import java.util.List;
 
-public class User {
+public class profile {
     private int id;
-    private String username;
-    private String Password;
-    private String Email;
-    private String PhoneNumber;
+    private String profile;
+    private String password;
+    private String email;
+    private String phoneNumber;
     private List<Wishlist> wishlists; // skal vi have denne under vores profile?
 
     public int getId() {
@@ -18,12 +18,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getProfile() {
+        return profile;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public String getPassword() {
