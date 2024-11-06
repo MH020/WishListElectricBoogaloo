@@ -2,7 +2,9 @@ package org.example.wishlistelectricboogaloo.Controller;
 
 
 import jakarta.servlet.http.HttpSession;
+import org.example.wishlistelectricboogaloo.Model.Product;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
+import org.example.wishlistelectricboogaloo.Service.ProfileService;
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/homepage/{profileID}")
 public class ProfileController {
     WishlistService wishlistService;
-    public ProfileController(WishlistService wishlistService){
+    ProfileService profileService;
+    public ProfileController(WishlistService wishlistService, ProfileService profileService) {
         this.wishlistService = wishlistService;
+        this.profileService = profileService;
     }
 
     @GetMapping("")
@@ -25,7 +31,9 @@ public class ProfileController {
     }
 
     @GetMapping("/market")
-    public String getMarketPage(){
+    public String getMarket(int marketId, Model model) {
+        List<Product> products = profileService.getAllProducts(marketId);
+        model.addAttribute("products");
         return "market";
     }
 
