@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/homepage/{profileID}")
 public class ProfileController {
     WishlistService wishlistService;
-    public ProfileController(WishlistService wishlistService){
+    public ProfileController(WishlistService wishlistService,HttpSession session){
         this.wishlistService = wishlistService;
+
     }
 
     @GetMapping("")
@@ -41,7 +42,7 @@ public class ProfileController {
     }
 
     @PostMapping("/addWishList")
-    public String addWishList(Wishlist wishlist) {
+    public String addWishList(Wishlist wishlist,HttpSession session) {
         wishlistService.createWishlist(wishlist);
         return "redirect:/myWishlist";
     }

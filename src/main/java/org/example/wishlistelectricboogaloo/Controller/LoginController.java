@@ -25,7 +25,7 @@ public class LoginController {
     }
 
     @PostMapping("")
-    public String postLogin(@ModelAttribute Profile profile, HttpSession session){
+    public String postLogin(@ModelAttribute Profile profile, HttpSession session) {
         //if the profile is authenticated, the profile is redirected to their homepage
 
         try {
