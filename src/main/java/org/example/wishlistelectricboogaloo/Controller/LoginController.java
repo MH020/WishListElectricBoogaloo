@@ -30,10 +30,12 @@ public class LoginController {
         User realUser = UserService.authenticateUser(username, password);
         if (realUser != null) {
             session.setAttribute("id",realUser.getId());
+            System.out.println(session.getAttribute("id"));
             return "redirect: myHomepage";
         }
         return "loginPage";
     }
+
 
     @GetMapping("/newProfile")
     public String getNewProfilePage(){
