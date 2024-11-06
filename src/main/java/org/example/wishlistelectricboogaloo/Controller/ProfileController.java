@@ -1,5 +1,7 @@
 package org.example.wishlistelectricboogaloo.Controller;
 
+
+import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,8 @@ public class ProfileController {
     }
 
     @PostMapping("/logout")
-    public String postLogout(){
+    public String postLogout(HttpSession session){
+        session.invalidate();
         return "redirect: loginPage";
     }
 
