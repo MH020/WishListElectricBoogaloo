@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>New profile</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
 <h1> New profile</h1>
 <p> endpoint: /login/newProfile</p>
 
-<form method="get" action="myHomepage.html" style="display:inline;">
+<form method="get" th:action="@{/homepage/{profileID}(profileID = 1)}" style="display:inline;">
     <button type="submit">Submit</button>
 </form>
 

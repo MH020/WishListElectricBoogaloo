@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>My wishlist</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
     <h1> My wishlist</h1>
     <p> endpoint: @RequestMapping(“/homepage/{profileID}/wishlist”) </br>
         @GetMapping(“/view/{wishlistID}”)
     </p>
-    <a href="myHomepage.html">Homepage</a>
+    <a th:href="@{/homepage/{profileID}(profileID = 1)}">Homepage</a>
 
     <table>
         <th>Min Seje Ønskelist B-)</th>

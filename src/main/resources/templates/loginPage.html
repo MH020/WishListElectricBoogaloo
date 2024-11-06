@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
     <h1> Login</h1>
@@ -10,12 +11,12 @@
     <p> link til new profile page</p>
     <p> endpoint: /login</p>
 
-    <form method="get" action="myHomepage.html" style="display:inline;">
+    <form method="get" th:action="@{/homepage/{profileID} (profileID = 1)}" style="display:inline;">
         <button type="submit">log in</button>
     </form>
 
     <ul>
-        <li><a href="newProfile.html">Create new profile</a></li>
+        <li><a th:href="@{/login/newProfile}">Create new profile</a></li>
     </ul>
 
 </body>
