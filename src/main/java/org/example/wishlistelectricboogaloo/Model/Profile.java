@@ -5,7 +5,7 @@ import java.util.List;
 public class Profile {
 
     private int id;
-    private String profile;
+    private String username;
     private String password;
     private String email;
     private String phoneNumber;
@@ -19,12 +19,12 @@ public class Profile {
         this.id = id;
     }
 
-    public String getProfile() {
-        return profile;
+    public String getUsername() {
+        return username;
     }
 
-    public void setProfile(String profile) {
-        this.profile = profile;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -51,7 +51,7 @@ public class Profile {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<WishList> getWishlists() {
+    public List<Wishlist> getWishlists() {
         return wishlists;
     }
 

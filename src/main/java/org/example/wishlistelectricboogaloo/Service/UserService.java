@@ -1,6 +1,6 @@
 package org.example.wishlistelectricboogaloo.Service;
 
-import org.example.wishlistelectricboogaloo.Model.User;
+import org.example.wishlistelectricboogaloo.Model.Profile;
 import org.example.wishlistelectricboogaloo.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User authenticateUser(String username, String password) {
-        return userRepository.authenticateUser(username, password);
+    public Profile authenticateUser(String username, String password) {
+        return userRepository.authenticateProfile(username, password);
     }
 }

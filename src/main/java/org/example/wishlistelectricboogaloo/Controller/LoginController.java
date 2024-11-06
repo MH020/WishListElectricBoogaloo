@@ -1,7 +1,7 @@
 package org.example.wishlistelectricboogaloo.Controller;
 
 import jakarta.servlet.http.HttpSession;
-import org.example.wishlistelectricboogaloo.Model.User;
+import org.example.wishlistelectricboogaloo.Model.Profile;
 import org.example.wishlistelectricboogaloo.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,16 +20,16 @@ public class LoginController {
 
     @GetMapping("")
     public String getLoginPage(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new Profile());
         return "loginPage";
     }
 
     @PostMapping("")
-    public String postLogin(@ModelAttribute User user, HttpSession session){
-        //if the user is authenticated, the user is redirected to their homepage
+    public String postLogin(@ModelAttribute Profile profile, HttpSession session){
+        //if the profile is authenticated, the profile is redirected to their homepage
 
         try {
-            User realUser = UserService.authenticateUser(user.getUsername(), user.getPassword());
+            Profile realUser = UserService.authenticateUser(profile.getUsername(), profile.getPassword());
 
 
         if (realUser != null) {

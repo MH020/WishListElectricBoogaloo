@@ -1,7 +1,7 @@
 package org.example.wishlistelectricboogaloo.Repository;
 import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.ConnectionManager;
-import org.example.wishlistelectricboogaloo.Model.User;
+import org.example.wishlistelectricboogaloo.Model.Profile;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +30,7 @@ public class UserRepository {
     }
 
     //authenticate method
-    public User authenticateUser(String Username, String Password) {
+    public Profile authenticateProfile(String Username, String Password) {
         String SQLcheck = "SELECT * FROM profile WHERE username = ? AND password = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQLcheck)) {
             preparedStatement.setString(1, Username);
@@ -39,13 +39,13 @@ public class UserRepository {
             //sees if there is a resultSet in the database that matches the username and password entered by the user and returns true if there is
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
             if (resultSet.next()) {
-                User user = new User();
-                user.setId(resultSet.getInt("profile_id"));
-                user.setUsername(resultSet.getString("username"));
-                user.setPassword(resultSet.getString("password"));
-                user.setEmail(resultSet.getString("email"));
-                user.setPhoneNumber(resultSet.getString("phone"));
-                return user;
+                Profile profile = new Profile();
+                profile.setId(resultSet.getInt("profile_id"));
+                profile.setUsername(resultSet.getString("username"));
+                profile.setPassword(resultSet.getString("password"));
+                profile.setEmail(resultSet.getString("email"));
+                profile.setPhoneNumber(resultSet.getString("phone"));
+                return profile;
             }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -57,7 +57,7 @@ public class UserRepository {
     }
 
     public int getUserId(HttpSession session) {
-        User user = (User) session.getAttribute("user");
+        Profile user = (Profile) session.getAttribute("user");
         if (user != null) {
             return user.getId();
         }
