@@ -7,6 +7,7 @@ import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,9 +34,9 @@ public class ProfileController {
     }
 
     @GetMapping("/market")
-    public String getMarket(int marketId, Model model) {
-        List<Product> products = profileService.getAllProducts(marketId);
-        model.addAttribute("products");
+    public String getMarket(@PathVariable int profileID, Model model) {
+        //List<Product> products = profileService.getAllProducts(marketId);
+        model.addAttribute("profileID", profileID);
         return "market";
     }
 
