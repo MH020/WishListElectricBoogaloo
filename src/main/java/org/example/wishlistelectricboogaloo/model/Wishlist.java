@@ -11,6 +11,11 @@ public class Wishlist {
    public Wishlist() {
    }
 
+   public Wishlist(int id, int profileId){
+       this.id= id;
+       this.profileId = profileId;
+   }
+
    public int getId() {
       return id;
 

@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -55,20 +56,27 @@ public class WishlistRepository {
     }
     public List<Wishlist> getAllWishLists(int profileId) {
         String SQLReadFromWishlist = "SELECT * From Wishlist where profile_ID = ?";
+        List<Wishlist> allWishList = new ArrayList<>();
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLReadFromWishlist);
             preparedStatement.setInt(1, profileId);
-            ResultSet resultset = preparedStatement.executeQuery()
+            ResultSet resultset = preparedStatement.executeQuery();
+            while(resultset.next()){
+                int profile_id = resultset.getInt("profile_id");
+                String name = resultset.getString("name");
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return  ;
-    }
+        return allWishList ;
+
         }
 
 
 
 
     }
-}
+
+
