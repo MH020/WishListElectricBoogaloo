@@ -1,7 +1,7 @@
-package org.example.wishlistelectricboogaloo.Repository;
+package org.example.wishlistelectricboogaloo.repository;
 
 import org.example.wishlistelectricboogaloo.ConnectionManager;
-import org.example.wishlistelectricboogaloo.Model.Product;
+import org.example.wishlistelectricboogaloo.model.Product;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;

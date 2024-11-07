@@ -1,7 +1,7 @@
-package org.example.wishlistelectricboogaloo.Repository;
+package org.example.wishlistelectricboogaloo.repository;
 import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.ConnectionManager;
-import org.example.wishlistelectricboogaloo.Model.Profile;
+import org.example.wishlistelectricboogaloo.model.Profile;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,8 +1,10 @@
-package org.example.wishlistelectricboogaloo.Service;
+package org.example.wishlistelectricboogaloo.service;
 
-import org.example.wishlistelectricboogaloo.Model.Wishlist;
-import org.example.wishlistelectricboogaloo.Repository.WishlistRepository;
+import org.example.wishlistelectricboogaloo.model.Wishlist;
+import org.example.wishlistelectricboogaloo.repository.WishlistRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class WishlistService {
@@ -21,8 +23,7 @@ public class WishlistService {
         wishlistRepository.deleteWishlist(id);
     }
 
-    public Wishlist getWishLIstById(int wishlistID){
-        //implement the logic  and  here we  make the connection to the respository
-        return wishlistRepository.getWishlistById(wishlistID);orElse(null);
+    public List<Wishlist> getAllWishLists(int profileId) {
+        return wishlistRepository.getAllWishLists(profileId);
     }
 }

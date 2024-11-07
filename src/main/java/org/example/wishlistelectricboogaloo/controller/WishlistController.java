@@ -1,9 +1,7 @@
-package org.example.wishlistelectricboogaloo.Controller;
+package org.example.wishlistelectricboogaloo.controller;
 
-import org.example.wishlistelectricboogaloo.Model.Wishlist;
-import org.example.wishlistelectricboogaloo.Service.WishlistService;
+import org.example.wishlistelectricboogaloo.service.WishlistService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,10 +37,4 @@ public class WishlistController {
         return "redirect: market";
     }
 
-    @GetMapping("/view/{wishListID}")
-    public String getWishlist(@PathVariable int wishlistID, Model model){
-        Wishlist wishlist = wishlistService.getWishlist(wishlistID);
-        model.addAttribute("wishlist", wishlist);
-        return "myWishlist";
-    }
 }

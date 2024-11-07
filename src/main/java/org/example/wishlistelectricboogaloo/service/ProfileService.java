@@ -1,8 +1,8 @@
-package org.example.wishlistelectricboogaloo.Service;
+package org.example.wishlistelectricboogaloo.service;
 
-import org.example.wishlistelectricboogaloo.Model.Product;
-import org.example.wishlistelectricboogaloo.Repository.MarketRepository;
-import org.example.wishlistelectricboogaloo.Repository.ProfileRepository;
+import org.example.wishlistelectricboogaloo.model.Product;
+import org.example.wishlistelectricboogaloo.repository.MarketRepository;
+import org.example.wishlistelectricboogaloo.repository.ProfileRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

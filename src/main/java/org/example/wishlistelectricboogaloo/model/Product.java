@@ -1,4 +1,4 @@
-package org.example.wishlistelectricboogaloo.Model;
+package org.example.wishlistelectricboogaloo.model;
 
 public class Product {
     private int productId;

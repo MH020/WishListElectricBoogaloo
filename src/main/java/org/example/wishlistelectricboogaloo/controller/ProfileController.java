@@ -1,14 +1,15 @@
-package org.example.wishlistelectricboogaloo.Controller;
+package org.example.wishlistelectricboogaloo.controller;
 
 
 import jakarta.servlet.http.HttpSession;
-import org.example.wishlistelectricboogaloo.Model.Product;
-import org.example.wishlistelectricboogaloo.Model.Wishlist;
-import org.example.wishlistelectricboogaloo.Service.ProfileService;
-import org.example.wishlistelectricboogaloo.Service.WishlistService;
+import org.example.wishlistelectricboogaloo.model.Product;
+import org.example.wishlistelectricboogaloo.model.Wishlist;
+import org.example.wishlistelectricboogaloo.service.ProfileService;
+import org.example.wishlistelectricboogaloo.service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,8 +26,9 @@ public class ProfileController {
     }
 
     @GetMapping("")
-    public String getMyHomepage(Model model){
-        model.addAttribute("wishlist", new Wishlist());
+    public String getMyHomepage(Model model, @PathVariable int profileID) {
+        model.addAttribute("wishlist", new Wishlist());// skab en metode til at lave en ønskeliste
+        model.addAttribute("wishlist_overview", wishlistService.getALlWishLists(profileID));
         return "myHomepage";
 
     }

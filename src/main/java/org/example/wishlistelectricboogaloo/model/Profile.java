@@ -1,4 +1,4 @@
-package org.example.wishlistelectricboogaloo.Model;
+package org.example.wishlistelectricboogaloo.model;
 
 import java.util.List;
 

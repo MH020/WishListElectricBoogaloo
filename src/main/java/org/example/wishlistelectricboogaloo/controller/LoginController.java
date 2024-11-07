@@ -1,8 +1,8 @@
-package org.example.wishlistelectricboogaloo.Controller;
+package org.example.wishlistelectricboogaloo.controller;
 
 import jakarta.servlet.http.HttpSession;
-import org.example.wishlistelectricboogaloo.Model.Profile;
-import org.example.wishlistelectricboogaloo.Service.ProfileService;
+import org.example.wishlistelectricboogaloo.model.Profile;
+import org.example.wishlistelectricboogaloo.service.ProfileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

@@ -1,13 +1,14 @@
-package org.example.wishlistelectricboogaloo.Repository;
+package org.example.wishlistelectricboogaloo.repository;
 
 import org.example.wishlistelectricboogaloo.ConnectionManager;
-import org.example.wishlistelectricboogaloo.Model.Wishlist;
+import org.example.wishlistelectricboogaloo.model.Wishlist;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 @Repository
 public class WishlistRepository {
@@ -52,10 +53,22 @@ public class WishlistRepository {
             e.printStackTrace();
         }
     }
-    public void findById(int wishlist_ID) {
-        Return wishlist_id;
-        // Set the logic to find the wishlist in the database
-        // Return an Optional<Wishlist>
+    public List<Wishlist> getAllWishLists(int profileId) {
+        String SQLReadFromWishlist = "SELECT * From Wishlist where profile_ID = ?";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(SQLReadFromWishlist);
+            preparedStatement.setInt(1, profileId);
+            ResultSet resultset = preparedStatement.executeQuery()
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  ;
+    }
+        }
+
+
+
 
     }
 }
