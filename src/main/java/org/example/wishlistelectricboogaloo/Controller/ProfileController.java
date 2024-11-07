@@ -1,6 +1,4 @@
 package org.example.wishlistelectricboogaloo.Controller;
-
-
 import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.Model.Product;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
@@ -17,11 +15,15 @@ import java.util.List;
 @Controller
 @RequestMapping("/homepage/{profileID}")
 public class ProfileController {
-    WishlistService wishlistService;
-    ProfileService profileService;
-    public ProfileController(WishlistService wishlistService, ProfileService profileService) {
+    private final WishlistService wishlistService;
+    private final ProfileService profileService;
+    private final HttpSession session;
+
+    public ProfileController(WishlistService wishlistService,HttpSession session, ProfileService profileService) {
         this.wishlistService = wishlistService;
         this.profileService = profileService;
+        this.session = session;
+
     }
 
     @GetMapping("")
@@ -50,7 +52,8 @@ public class ProfileController {
 
     @PostMapping("/addWishList")
     public String addWishList(Wishlist wishlist) {
-        wishlistService.createWishlist(wishlist);
+        Integer id = (Integer) session.getAttribute("id");
+        wishlistService.createWishlist(wishlist,id);
         return "redirect:/myWishlist";
     }
 }
