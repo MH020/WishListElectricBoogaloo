@@ -2,6 +2,7 @@ package org.example.wishlistelectricboogaloo.Repository;
 
 import org.example.wishlistelectricboogaloo.ConnectionManager;
 import org.example.wishlistelectricboogaloo.Model.Product;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ProductRepository {
     private final Connection conn;
 
@@ -18,7 +20,7 @@ public class ProductRepository {
 
     //show market that user is connected to by marketId
     public List<Product> getAllProducts(int marketId) {
-        String sql = "SELECT product_id, product_name, product_description, product_price, market_id FROM Product WHERE market_id = ?";
+        String sql = "select product_id, product_name, product_description, product_price, market_id from Product where market_id = ?";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -27,7 +29,6 @@ public class ProductRepository {
             List<Product> products = new ArrayList<>();
 
             while (resultSet.next()) {
-                //Product product = new Product(id, name, description, price);
                 int id = resultSet.getInt("product_id");
                 String name = resultSet.getString("product_name");
                 String description = resultSet.getString("product_description");
@@ -35,6 +36,25 @@ public class ProductRepository {
                 products.add(new Product(id, name, description, price));
             }
             return products;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getMarketByProfileID(int profileId) {
+        String sql = "SELECT m.city FROM Market m " +
+                "JOIN Joined_Profile_Market jpm ON m.market_id = jpm.market_id " +
+                "WHERE jpm.profile_id = ?";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, profileId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getString("city");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
