@@ -1,5 +1,6 @@
 package org.example.wishlistelectricboogaloo.Repository;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.ConnectionManager;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.springframework.stereotype.Repository;
@@ -18,12 +19,13 @@ public class WishlistRepository {
     }
 
     //create a wishlist
-    public int createWishlist(Wishlist wishlist, int profileID) {
-        String SQLInsertWishlist = "insert into wishlist (name, profile_id) values(?,?)";
+    public int createWishlist(Wishlist wishlist,int id) {
+        String SQLInsertWishlist = "insert into wishlist (name,profileid) values(?,?)";
+
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLInsertWishlist, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, wishlist.getName());
-            preparedStatement.setInt(2, profileID);
+            preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -34,6 +36,7 @@ public class WishlistRepository {
         }
         return 0;
     }
+
     public void deleteWishlist(int id){
         int updatedRows = 0;
         String SQlDeleteFromWishlist = "Delete from Wishlist where id = ?";
@@ -52,7 +55,4 @@ public class WishlistRepository {
             e.printStackTrace();
         }
     }
-
-
-    }
-
+}
