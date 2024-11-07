@@ -41,11 +41,13 @@ public class Product {
     }
 
     //Constructor
-    public Product() {
+    public Product(int productId, String productName, String productDescription, double productPrice) {
         this.productId = productId;
         this.productName = productName;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
     }
+
+    public Product(){}
 
 }
