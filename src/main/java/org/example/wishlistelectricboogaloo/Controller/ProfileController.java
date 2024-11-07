@@ -1,6 +1,4 @@
 package org.example.wishlistelectricboogaloo.Controller;
-
-
 import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
@@ -13,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/homepage/{profileID}")
 public class ProfileController {
-    WishlistService wishlistService;
+    private final WishlistService wishlistService;
+    private final HttpSession session;
+
     public ProfileController(WishlistService wishlistService,HttpSession session){
         this.wishlistService = wishlistService;
+        this.session = session;
 
     }
 
@@ -42,8 +43,9 @@ public class ProfileController {
     }
 
     @PostMapping("/addWishList")
-    public String addWishList(Wishlist wishlist,HttpSession session) {
-        wishlistService.createWishlist(wishlist);
+    public String addWishList(Wishlist wishlist) {
+        Integer id = (Integer) session.getAttribute("id");
+        wishlistService.createWishlist(wishlist,id);
         return "redirect:/myWishlist";
     }
 }
