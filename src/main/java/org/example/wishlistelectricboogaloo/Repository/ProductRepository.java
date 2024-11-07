@@ -43,9 +43,9 @@ public class ProductRepository {
     }
 
     public String getMarketByProfileID(int profileId) {
-        String sql = "SELECT m.city FROM Market m " +
-                "JOIN Joined_Profile_Market jpm ON m.market_id = jpm.market_id " +
-                "WHERE jpm.profile_id = ?";
+        String sql = "select m.city from Market m " + //making use of aliases
+                "join Joined_Profile_Market jpm on m.market_id = jpm.market_id " +
+                "where jpm.profile_id = ?";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);

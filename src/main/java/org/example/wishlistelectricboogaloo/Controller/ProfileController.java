@@ -36,6 +36,8 @@ public class ProfileController {
     @GetMapping("/market")
     public String getMarket(@PathVariable int profileID, Model model) {
         //List<Product> products = profileService.getAllProducts(marketId);
+        String market = profileService.getMarketByProfileID(profileID); //get market info based on profileID
+        model.addAttribute("market", market); //
         model.addAttribute("profileID", profileID);
         return "market";
     }

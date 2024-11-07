@@ -22,6 +22,11 @@ import java.util.List;
         public List<Product> getAllProducts(int marketId) {
             return productRepository.getAllProducts(marketId);
         }
+
+        public String getMarketByProfileID(int profileId) {
+            return productRepository.getMarketByProfileID(profileId);
+        }
+
         public Profile authenticateProfile (String username, String password) {
             return profileRepository.authenticateProfile(username, password);
         }
