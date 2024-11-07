@@ -72,6 +72,7 @@ public class WishlistRepository {
                 wishlist.setName(resultSet.getString("name"));
                 wishlist.setProfileId(resultSet.getInt("profile_id"));
 
+                wishlist.setProducts(getAllProductsBelongingToWishlist(wishlistID));
             }
 
         }catch(SQLException e){
