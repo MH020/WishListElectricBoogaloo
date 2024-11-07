@@ -54,6 +54,6 @@ public class ProfileController {
     public String addWishList(Wishlist wishlist) {
         Integer id = (Integer) session.getAttribute("id");
         wishlistService.createWishlist(wishlist,id);
-        return "redirect:/myWishlist";
+        return "redirect:/homepage/" + id;
     }
 }
