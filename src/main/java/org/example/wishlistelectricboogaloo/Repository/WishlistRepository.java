@@ -2,13 +2,12 @@ package org.example.wishlistelectricboogaloo.Repository;
 
 import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.ConnectionManager;
+import org.example.wishlistelectricboogaloo.Model.Product;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.List;
 
 @Repository
 public class WishlistRepository {
@@ -54,5 +53,30 @@ public class WishlistRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Wishlist getWishlist(int profileID, int wishlistID){
+        String SQLGetwishlist = "SELECT * FROM wishlist WHERE profile_id = ? AND wishlist_id = ?";
+        Wishlist wishlist = new Wishlist();
+
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement(SQLGetwishlist);
+            preparedStatement.setInt(1, profileID);
+            preparedStatement.setInt(2, wishlistID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                wishlist.setId(resultSet.getInt("wishlist_id"));
+                wishlist.setName(resultSet.getString("name"));
+                wishlist.setProfileId(resultSet.getInt("profile_id"));
+
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return wishlist;
     }
 }

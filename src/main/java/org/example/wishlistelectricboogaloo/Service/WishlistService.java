@@ -21,4 +21,8 @@ public class WishlistService {
     public void deleteWishlist(int id) {
         wishlistRepository.deleteWishlist(id);
     }
+
+    public Wishlist getWishlist(int profileID, int wishlistID){
+        return wishlistRepository.getWishlist(profileID, wishlistID);
+    }
 }

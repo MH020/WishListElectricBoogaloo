@@ -1,5 +1,6 @@
 package org.example.wishlistelectricboogaloo.Controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
@@ -13,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/homepage/{profileID}/wishlist")
 public class WishlistController {
     private final WishlistService wishlistService;
-
     public WishlistController(WishlistService wishlistService) {
+
         this.wishlistService = wishlistService;
     }
 
     @GetMapping("/view/{wishlistID}")
-    public String getWishlist(){
+    public String getWishlist(Model model, @PathVariable int profileID, @PathVariable int wishlistID){
+        model.addAttribute("wishlist", wishlistService.getWishlist(profileID, wishlistID));
         return "myWishlist";
     }
 

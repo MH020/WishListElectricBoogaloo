@@ -13,7 +13,7 @@
     <a th:href="@{/homepage/{profileID}(profileID = 1)}">Homepage</a>
 
     <table>
-        <th>Min Seje Ønskelist B-)</th>
+        <th th:text ="${wishlist.getName()}"></th>
         <tr>
             <th>Product</th>
             <th>Price</th>
