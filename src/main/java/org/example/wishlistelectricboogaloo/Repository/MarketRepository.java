@@ -20,7 +20,7 @@ public class MarketRepository {
 
     //show market that user is connected to by marketId
     public List<Product> getAllProducts(int marketId) {
-        String sql = "SELECT * FROM Product WHERE marketId = ?";
+        String sql = "SELECT product_id, product_name, product_description, product_price, market_id FROM Product WHERE market_id = ?";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -28,11 +28,12 @@ public class MarketRepository {
             List<Product> products = new ArrayList<>();
 
             while (resultSet.next()) {
-                Product product = new Product();
-                product.setProductId(resultSet.getInt("id"));
-                product.setProductName(resultSet.getString("name"));
-                product.setProductPrice(resultSet.getDouble("price"));
-                products.add(product);
+                //Product product = new Product(id, name, description, price);
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String description = resultSet.getString("description");
+                Double price = resultSet.getDouble("price");
+                products.add(new Product(id, name, description, price));
             }
             return products;
         } catch (Exception e) {

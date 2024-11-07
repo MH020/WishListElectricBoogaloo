@@ -41,7 +41,7 @@ public class Product {
     }
 
     //Constructor
-    public Product() {
+    public Product(int id, String name, String description, Double price) {
         this.productId = productId;
         this.productName = productName;
         this.productDescription = productDescription;

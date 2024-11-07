@@ -13,7 +13,7 @@
         <button type="submit">log ud</button>
     </form>
 
-    <form method="get" th:action="@{/homepage/{profileID}/market(profileID = 1)}" style="display:inline;">
+    <form method="get" th:action="@{/homepage/{profileID}/market(profileID=${profileID})}" style="display:inline;">
         <button type="submit">Market</button>
     </form>
 
