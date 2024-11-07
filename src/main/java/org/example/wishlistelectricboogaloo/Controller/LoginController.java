@@ -29,7 +29,7 @@ public class LoginController {
         //if the profile is authenticated, the profile is redirected to their homepage
 
         try {
-            Profile realUser = ProfileService.authenticateUser(profile.getUsername(), profile.getPassword());
+            Profile realUser = ProfileService.authenticateProfile(profile.getUsername(), profile.getPassword());
 
 
         if (realUser != null) {
