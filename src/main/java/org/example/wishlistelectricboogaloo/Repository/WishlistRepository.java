@@ -52,4 +52,10 @@ public class WishlistRepository {
             e.printStackTrace();
         }
     }
+    public void findById(int wishlist_ID) {
+        Return wishlist_id;
+        // Set the logic to find the wishlist in the database
+        // Return an Optional<Wishlist>
+
+    }
 }

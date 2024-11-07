@@ -20,4 +20,9 @@ public class WishlistService {
     public void deleteWishlist(int id) {
         wishlistRepository.deleteWishlist(id);
     }
+
+    public Wishlist getWishLIstById(int wishlistID){
+        //implement the logic  and  here we  make the connection to the respository
+        return wishlistRepository.getWishlistById(wishlistID);orElse(null);
+    }
 }

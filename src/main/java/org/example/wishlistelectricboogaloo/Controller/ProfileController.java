@@ -28,6 +28,7 @@ public class ProfileController {
     public String getMyHomepage(Model model){
         model.addAttribute("wishlist", new Wishlist());
         return "myHomepage";
+
     }
 
     @GetMapping("/market")
