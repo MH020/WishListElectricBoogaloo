@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/homepage/{profileID}/wishlist")
 public class WishlistController {
     private final WishlistService wishlistService;
-
     public WishlistController(WishlistService wishlistService) {
         this.wishlistService = wishlistService;
     }

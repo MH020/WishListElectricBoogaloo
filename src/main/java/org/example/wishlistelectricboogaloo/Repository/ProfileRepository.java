@@ -17,9 +17,22 @@ public class ProfileRepository {
         this.conn = connectionManager.getConnection();
     }
     //create method
-    public void saveUser(){
+    public int  saveUser(Profile profile) {
         String Sql = "INSERT INTO profile (username, password, email, phone) VALUES (?,?,?,?)";
-        
+    try (PreparedStatement preparedStatement = conn.prepareStatement(Sql,PreparedStatement.RETURN_GENERATED_KEYS)) {
+        preparedStatement.setString(1, "username");
+        preparedStatement.setString(2, "password");
+        preparedStatement.setString(3, "email");
+        preparedStatement.setString(4, "phone");
+        preparedStatement.executeUpdate();
+        ResultSet resultSet = preparedStatement.getGeneratedKeys();
+        if (resultSet.next()) {
+            return resultSet.getInt(1);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+        return 0;
     }
     // Read Method
     public void readUser() {

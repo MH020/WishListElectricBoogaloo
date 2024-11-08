@@ -45,12 +45,14 @@ public class LoginController {
 
 
     @GetMapping("/newProfile")
-    public String getNewProfilePage(){
+    public String getNewProfilePage(Model model){
+        model.addAttribute("newProfile", new Profile());
         return "newProfile";
     }
 
     @PostMapping("/newProfile")
-    public String postNewUser (){
+    public String postNewUser (@ModelAttribute Profile profile){
+        ProfileService.saveUser(profile);
         return "redirect: myHomePage";
     }
 }
