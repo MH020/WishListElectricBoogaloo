@@ -10,15 +10,20 @@
     <p> endpoint: @RequestMapping(“/homepage/{profileID}/wishlist”) </br>
         @GetMapping(“/view/{wishlistID}”)
     </p>
-    <a th:href="@{/homepage/{profileID}(profileID = ${profileID})}">Homepage</a>
+
+    <a th:href="@{/homepage/{profileID}(profileID = ${profileID})}">Homepage </br></a>
 
     <table>
-        <th th:text ="${wishlist.getName()}"></th>
         <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Description</th>
+            <th class=table-header colspan="3" th:text ="${wishlist.getName()}"> </th>
         </tr>
+
+        <tr>
+            <th >Product</th>
+            <th >Price</th>
+            <th >Description</th>
+        </tr>
+
 
         <tr th:each="product : ${wishlist.getProducts()}">
             <td th:text="${product.getProductName()}"></td>
