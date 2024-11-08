@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Joined_Profile_Market (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Product (
                                        product_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                                       product_name VARCHAR(45) NOT NULL,
+                                       name VARCHAR(45) NOT NULL,
     description VARCHAR(200) NOT NULL,
     price DOUBLE NOT NULL,
     market_id INT NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Wishlist (
 -- -----------------------------------------------------
 -- Table Joined_Wishlist_Products
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS Joined_Wishlist_Products (
+CREATE TABLE IF NOT EXISTS Joined_Wishlist_and_Products (
                                                         wishlist_id INT NOT NULL,
                                                         product_id INT NOT NULL,
                                                         FOREIGN KEY (wishlist_id) REFERENCES Wishlist (wishlist_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -81,18 +81,18 @@ INSERT INTO Market (city) VALUES ('New York');
 INSERT INTO Market (city) VALUES ('Los Angeles');
 
 -- Insert into Product
-INSERT INTO Product (product_name, description, price, market_id) VALUES ('Electric Guitar', 'A high-quality electric guitar', 299.99, 1);
-INSERT INTO Product (product_name, description, price, market_id) VALUES ('Vinyl Record', 'Classic rock vinyl', 19.99, 1);
-INSERT INTO Product (product_name, description, price, market_id) VALUES ('Polaroid Camera', 'Instant camera', 99.99, 2);
+INSERT INTO Product (name, description, price, market_id) VALUES ('Electric Guitar', 'A high-quality electric guitar', 299.99, 1);
+INSERT INTO Product (name, description, price, market_id) VALUES ('Vinyl Record', 'Classic rock vinyl', 19.99, 1);
+INSERT INTO Product (name, description, price, market_id) VALUES ('Polaroid Camera', 'Instant camera', 99.99, 2);
 
 -- Insert into Wishlist
 INSERT INTO Wishlist (name, profile_id) VALUES ('John''s Wishlist', 1);
 INSERT INTO Wishlist (name, profile_id) VALUES ('Jane''s Wishlist', 2);
 
 -- Insert into Joined_Wishlist_Products
-INSERT INTO Joined_Wishlist_Products (wishlist_id, product_id) VALUES (1, 1);
-INSERT INTO Joined_Wishlist_Products (wishlist_id, product_id) VALUES (1, 2);
-INSERT INTO Joined_Wishlist_Products (wishlist_id, product_id) VALUES (2, 3);
+INSERT INTO Joined_Wishlist_and_Products (wishlist_id, product_id) VALUES (1, 1);
+INSERT INTO Joined_Wishlist_and_Products (wishlist_id, product_id) VALUES (1, 2);
+INSERT INTO Joined_Wishlist_and_Products (wishlist_id, product_id) VALUES (2, 3);
 
 -- Insert into Joined_Profile_Market
 INSERT INTO Joined_Profile_Market (profile_id, market_id) VALUES (1, 1);

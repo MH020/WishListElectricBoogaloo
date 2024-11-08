@@ -110,7 +110,7 @@ public class WishlistRepository {
     }
 
     public List<Integer> getProductIDfromJoinTable(int wishlistID){
-        String SQLproductjoinwishlist = "SELECT * FROM joined_wishlist_and_products WHERE wishlist_id = ?";
+        String SQLproductjoinwishlist = "SELECT * FROM Joined_Wishlist_and_Products WHERE wishlist_id = ?";
 
         List <Integer> productIDs = new ArrayList<>();
         try {
