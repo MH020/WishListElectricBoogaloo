@@ -31,8 +31,8 @@ public class ProductRepository {
             while (resultSet.next()) {
                 int productId = resultSet.getInt("product_id");
                 String productName = resultSet.getString("product_name");
-                String productDescription = resultSet.getString("description");
-                Double productPrice = resultSet.getDouble("price");
+                String productDescription = resultSet.getString("product_description");
+                Double productPrice = resultSet.getDouble("product_price");
                 products.add(new Product(productId, productName, productDescription, productPrice));
             }
             return products;
@@ -44,7 +44,7 @@ public class ProductRepository {
 
     //show market that user is connected to by profileId
     public int getMarketByProfileID(int profileId) {
-        String sql = "select market_id from Joined_Profile_Market where profile_id = ?";
+        String sql = "select market_id from ProfileMarket where profile_id = ?";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
