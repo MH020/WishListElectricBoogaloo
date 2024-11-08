@@ -18,7 +18,7 @@ public class ProfileRepository {
     }
     //create method
     public int saveUser(Profile profile) {
-        String Sql = "INSERT INTO Profile (username, password, email, phone) VALUES (?,?,?,?)";
+        String Sql = "INSERT INTO Profile (username, password,profile_email,profile_phone) VALUES (?,?,?,?)";
     try (PreparedStatement preparedStatement = conn.prepareStatement(Sql,PreparedStatement.RETURN_GENERATED_KEYS)) {
         preparedStatement.setString(1, profile.getUsername());
         preparedStatement.setString(2, profile.getPassword());
@@ -58,8 +58,8 @@ public class ProfileRepository {
                 profile.setId(resultSet.getInt("profile_id"));
                 profile.setUsername(resultSet.getString("username"));
                 profile.setPassword(resultSet.getString("password"));
-                profile.setEmail(resultSet.getString("email"));
-                profile.setPhoneNumber(resultSet.getString("phone"));
+                profile.setEmail(resultSet.getString("profile_email"));
+                profile.setPhoneNumber(resultSet.getString("profile_phone"));
                 return profile;
             }
             } catch (SQLException e) {

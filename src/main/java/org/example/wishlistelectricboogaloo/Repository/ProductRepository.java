@@ -20,7 +20,7 @@ public class ProductRepository {
 
     //show market that user is connected to by marketId
     public List<Product> getAllProducts(int marketId) {
-        String sql = "select product_id, product_name, description, price, market_id from Product where market_id = ?";
+        String sql = "select product_id, product_name, product_description,product_price, market_id from Product where market_id = ?";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);

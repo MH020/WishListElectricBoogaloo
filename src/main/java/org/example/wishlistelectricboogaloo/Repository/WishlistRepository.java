@@ -20,7 +20,7 @@ public class WishlistRepository {
 
     //create a wishlist
     public int createWishlist(Wishlist wishlist,int id) {
-        String SQLInsertWishlist = "insert into wishlist (name,profileid) values(?,?)";
+        String SQLInsertWishlist = "insert into wishlist (name,profile_id) values(?,?)";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLInsertWishlist, Statement.RETURN_GENERATED_KEYS);
@@ -39,7 +39,7 @@ public class WishlistRepository {
     // delete a wishlist
     public void deleteWishlist(int id){
         int updatedRows = 0;
-        String SQlDeleteFromWishlist = "Delete from Wishlist where id = ?";
+        String SQlDeleteFromWishlist = "Delete from Wishlist where wishlist_id = ?";
         String SQlDeleteFromJoinedTable ="DELETE FROM Joined wishlist and products where id = ?";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQlDeleteFromWishlist)) {
@@ -57,7 +57,7 @@ public class WishlistRepository {
     }
     public boolean updateWishlistAddProduct(int productId, int wishlistId) {
 
-        String sql = "INSERT INTO Joined_Wishlist_And_Products (wishlistId, productId) VALUES (?, ?)";
+        String sql = "INSERT INTO Joined_Wishlist_And_Products (wishlist_id, product_id) VALUES (?, ?)";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             preparedStatement.setInt(1, wishlistId);
