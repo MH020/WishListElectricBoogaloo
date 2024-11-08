@@ -13,8 +13,11 @@
         <button type="submit">log ud</button>
     </form>
 
+    <form method="get" th:action="@{/homepage/{profileID}/market (profileID = ${profileID})}" style="display:inline;">
+    <button type="submit">Market</button>
+    </form>
+
     <ul>
-        <li><a th:href="@{/homepage/{profileID}/market(profileID = 1)}">Market</a></li>
         <li><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}(profileID = 1, wishlistID = 1)}">My wishlist</a></li>
     </ul>
 
