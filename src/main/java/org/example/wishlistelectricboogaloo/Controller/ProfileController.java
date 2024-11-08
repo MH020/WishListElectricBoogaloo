@@ -6,9 +6,7 @@ import org.example.wishlistelectricboogaloo.Service.ProfileService;
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,19 +21,23 @@ public class ProfileController {
         this.wishlistService = wishlistService;
         this.profileService = profileService;
         this.session = session;
-
     }
 
     @GetMapping("")
     public String getMyHomepage(Model model){
         model.addAttribute("wishlist", new Wishlist());
+        model.addAttribute("profileID", session.getAttribute("id"));
         return "myHomepage";
     }
 
     @GetMapping("/market")
-    public String getMarket(int marketId, Model model) {
-        List<Product> products = profileService.getAllProducts(marketId);
-        model.addAttribute("products");
+    public String getMarket(@PathVariable int profileID, Model model) {
+        //Integer profileID = (Integer) session.getAttribute("id");
+        int market = profileService.getMarketByProfileID(profileID); //get market info based on profileID
+        List<Product> products = profileService.getAllProducts(market); //get all products from market
+        //List(Wishlist) wishlists = wishlistService.getWishListByProfileID(profileID);
+        model.addAttribute("products", products); //add products to model?
+        //model.addAttribute("wishlists", wishlists); //add wishlists to model?
         return "market";
     }
 
