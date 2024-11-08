@@ -27,7 +27,6 @@ public class LoginController {
     @PostMapping("")
     public String postLogin(@ModelAttribute Profile profile, HttpSession session) {
         //if the profile is authenticated, the profile is redirected to their homepage
-
         try {
             Profile realUser = ProfileService.authenticateProfile(profile.getUsername(), profile.getPassword());
 
