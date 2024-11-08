@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My homepage</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+</head>
+<body>
+    <h1> My homepage</h1>
+    <p> endpoint: /homepage/{profileID}</p>
+
+    <form method="get" th:action="@{/login}" style="display:inline;">
+        <button type="submit">log ud</button>
+    </form>
+
+    <form method="get" th:action="@{/homepage/{profileID}/market (profileID = ${profileID})}" style="display:inline;">
+    <button type="submit">Market</button>
+    </form>
+
+    <ul>
+
+        <li><a th:href="@{/homepage/{profileID}/market}">Market</a></li>
+        <li><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}}">My wishlist</a></li>
+    </ul>
+
+    <p> opret ny ønskeliste</p>
+    <table>
+        <tr>
+            <th>My Wishlists:</th>
+        </tr>
+
+        <tr>
+            <td><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}}">Min seje ønskeliste B-)</a></td>
+            <td>sletknap</td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}}">Fødselsdag!!</a></td>
+        </tr>
+    </table>
+
+    <p> slet profil</p>
+</body>
+</html>
