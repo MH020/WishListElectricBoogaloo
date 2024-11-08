@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/homepage")
+@RequestMapping("/homepage/{profileID}")
 public class ProfileController {
     private final WishlistService wishlistService;
     private final ProfileService profileService;
@@ -23,14 +23,15 @@ public class ProfileController {
         this.session = session;
     }
 
-    @GetMapping("/{profileID}")
+    @GetMapping("")
     public String getMyHomepage(Model model){
         model.addAttribute("wishlist", new Wishlist());
+        model.addAttribute("profileID", session.getAttribute("id"));
         return "myHomepage";
     }
 
     @GetMapping("/market")
-    public String getMarket(@RequestParam int profileID, Model model) {
+    public String getMarket(@PathVariable int profileID, Model model) {
         //Integer profileID = (Integer) session.getAttribute("id");
         int market = profileService.getMarketByProfileID(profileID); //get market info based on profileID
         List<Product> products = profileService.getAllProducts(market); //get all products from market

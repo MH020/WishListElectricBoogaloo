@@ -42,11 +42,19 @@
             <td th:text="${product.productPrice}"></td>
             <td th:text="${product.productDescription}"></td>
 
-            <!--<td>
-                <form method="get" th:action="@{}" style="display:inline;">
+            <td>
+                <form method="post" th:action="@{/update/addWish}">
+                    <input type="hidden" name="productID" th:value="${product.getProductId()}">
+
+                    <!-- Dropdown to select a wishlist -->
+                    <select name="wishlistID" required>
+                        <option value="" disabled selected>Select wishlist</option>
+                        <option th:each="wishlist : ${wishlists}" th:value="${wishlist.id}" th:text="${wishlist.name}"></option>
+                    </select>
+
                     <button type="submit">Add to wishlist</button>
                 </form>
-            </td>-->
+            </td>
         </tr>
 
         </tbody>

@@ -44,7 +44,7 @@
 
             <td>
                 <form method="post" th:action="@{/update/addWish}">
-                    <input type="hidden" name="productID" th:value="${product.productID}">
+                    <input type="hidden" name="productID" th:value="${product.getProductId()}">
 
                     <!-- Dropdown to select a wishlist -->
                     <select name="wishlistID" required>
