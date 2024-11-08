@@ -6,15 +6,12 @@ import org.example.wishlistelectricboogaloo.Service.ProfileService;
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/homepage/{profileID}")
+@RequestMapping("/homepage")
 public class ProfileController {
     private final WishlistService wishlistService;
     private final ProfileService profileService;
@@ -24,21 +21,20 @@ public class ProfileController {
         this.wishlistService = wishlistService;
         this.profileService = profileService;
         this.session = session;
-
     }
 
-    @GetMapping("")
+    @GetMapping("/{profileID}")
     public String getMyHomepage(Model model){
         model.addAttribute("wishlist", new Wishlist());
         return "myHomepage";
     }
 
     @GetMapping("/market")
-    public String getMarket(@PathVariable int profileID, Model model) {
-        //List<Product> products = profileService.getAllProducts(marketId);
-        String market = profileService.getMarketByProfileID(profileID); //get market info based on profileID
-        model.addAttribute("market", market); //
-        model.addAttribute("profileID", profileID);
+    public String getMarket(@RequestParam int profileID, Model model) {
+        //Integer profileID = (Integer) session.getAttribute("id");
+        int market = profileService.getMarketByProfileID(profileID); //get market info based on profileID
+        List<Product> products = profileService.getAllProducts(market); //get all products from market
+        model.addAttribute("products", products); //add products to model?
         return "market";
     }
 

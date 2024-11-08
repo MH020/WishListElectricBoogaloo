@@ -20,7 +20,7 @@ public class ProductRepository {
 
     //show market that user is connected to by marketId
     public List<Product> getAllProducts(int marketId) {
-        String sql = "select product_id, product_name, product_description, product_price, market_id from Product where market_id = ?";
+        String sql = "select product_id, product_name, description, price, market_id from Product where market_id = ?";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -29,11 +29,11 @@ public class ProductRepository {
             List<Product> products = new ArrayList<>();
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("product_id");
-                String name = resultSet.getString("product_name");
-                String description = resultSet.getString("product_description");
-                Double price = resultSet.getDouble("product_price");
-                products.add(new Product(id, name, description, price));
+                int productId = resultSet.getInt("product_id");
+                String productName = resultSet.getString("product_name");
+                String productDescription = resultSet.getString("description");
+                Double productPrice = resultSet.getDouble("price");
+                products.add(new Product(productId, productName, productDescription, productPrice));
             }
             return products;
         } catch (Exception e) {
@@ -42,10 +42,9 @@ public class ProductRepository {
         return null;
     }
 
-    public String getMarketByProfileID(int profileId) {
-        String sql = "select m.city from Market m " + //making use of aliases
-                "join Joined_Profile_Market jpm on m.market_id = jpm.market_id " +
-                "where jpm.profile_id = ?";
+    //show market that user is connected to by profileId
+    public int getMarketByProfileID(int profileId) {
+        String sql = "select market_id from Joined_Profile_Market where profile_id = ?";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -53,11 +52,11 @@ public class ProductRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                return resultSet.getString("city");
+                return resultSet.getInt("market_id");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return 0;
     }
 }

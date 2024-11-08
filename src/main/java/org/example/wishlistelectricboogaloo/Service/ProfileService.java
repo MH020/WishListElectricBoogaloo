@@ -23,7 +23,7 @@ import java.util.List;
             return productRepository.getAllProducts(marketId);
         }
 
-        public String getMarketByProfileID(int profileId) {
+        public int getMarketByProfileID(int profileId) {
             return productRepository.getMarketByProfileID(profileId);
         }
 
