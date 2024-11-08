@@ -5,6 +5,8 @@ import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Repository.WishlistRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WishlistService {
     private final WishlistRepository wishlistRepository;
@@ -17,6 +19,11 @@ public class WishlistService {
     public int createWishlist(Wishlist wishlist,int id ) {
         return wishlistRepository.createWishlist(wishlist,id);
     }
+    //Get all wishlists
+    public List<Wishlist> getAllWishLists(int profileId) {
+        return wishlistRepository.getAllWishLists(profileId);
+    }
+
     //delete a wishlist
     public void deleteWishlist(int id) {
         wishlistRepository.deleteWishlist(id);

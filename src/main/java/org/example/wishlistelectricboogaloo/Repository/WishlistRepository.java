@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class WishlistRepository {
@@ -55,6 +57,29 @@ public class WishlistRepository {
             e.printStackTrace();
         }
     }
+
+    // Get all wishlists
+    public List<Wishlist> getAllWishLists(int profileId) {
+        String SQLReadFromWishlist = "SELECT * From Wishlist where profile_ID = ?";
+        List<Wishlist> allWishList = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(SQLReadFromWishlist);
+            //preparedStatement.setInt(1, profileId);
+            ResultSet resultset = preparedStatement.executeQuery();
+            while(resultset.next()) {
+                int profile_id = resultset.getInt("profile_id");
+                String name = resultset.getString("proflie_name");
+                Wishlist wishlist = new Wishlist(profile_id, profile_name);
+                allWishList.add(wishlist);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allWishList ;
+//Der skal laves en HTML til AllWishlists metode
+    }
+
     public boolean updateWishlistAddProduct(int productId, int wishlistId) {
 
         String sql = "INSERT INTO Joined_Wishlist_And_Products (wishlist_id, product_id) VALUES (?, ?)";

@@ -24,10 +24,11 @@ public class ProfileController {
     }
 
     @GetMapping("")
-    public String getMyHomepage(Model model){
-        model.addAttribute("wishlist", new Wishlist());
-        model.addAttribute("profileID", session.getAttribute("id"));
+    public String getMyHomepage(Model model, @PathVariable int profileID) {
+        model.addAttribute("wishlist", new Wishlist());// skab en metode til at lave en ønskeliste
+        model.addAttribute("wishlist_overview", wishlistService.getAllWishLists(profileID));
         return "myHomepage";
+
     }
 
     @GetMapping("/market")
