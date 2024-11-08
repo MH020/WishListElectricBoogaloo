@@ -21,4 +21,7 @@ public class WishlistService {
     public void deleteWishlist(int id) {
         wishlistRepository.deleteWishlist(id);
     }
+    public boolean updateWishlistAddProduct(int productID, int wishlistId) {
+        return wishlistRepository.updateWishlistAddProduct(productID,wishlistId);
+    }
 }

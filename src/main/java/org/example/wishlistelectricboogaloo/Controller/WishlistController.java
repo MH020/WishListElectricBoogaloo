@@ -4,10 +4,7 @@ import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/homepage/{profileID}/wishlist")
@@ -35,7 +32,8 @@ public class WishlistController {
     }
 
     @PostMapping("/update/{wishlistID}/addWish")
-    public String updateWishlistAddProduct(){
+    public String updateWishlistAddProduct(@PathVariable int wishlistID,@RequestParam int productID){
+        wishlistService.updateWishlistAddProduct(productID, wishlistID);
         return "redirect: market";
     }
 }

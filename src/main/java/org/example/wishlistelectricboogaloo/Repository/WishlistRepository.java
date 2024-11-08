@@ -36,7 +36,7 @@ public class WishlistRepository {
         }
         return 0;
     }
-
+    // delete a wishlist
     public void deleteWishlist(int id){
         int updatedRows = 0;
         String SQlDeleteFromWishlist = "Delete from Wishlist where id = ?";
@@ -55,4 +55,19 @@ public class WishlistRepository {
             e.printStackTrace();
         }
     }
+    public boolean updateWishlistAddProduct(int productId, int wishlistId) {
+
+        String sql = "INSERT INTO Joined_Wishlist_And_Products (wishlistId, productId) VALUES (?, ?)";
+
+        try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.setInt(1, wishlistId);
+            preparedStatement.setInt(2, productId);
+            int rowsEffected = preparedStatement.executeUpdate();
+            return rowsEffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

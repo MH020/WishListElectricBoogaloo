@@ -18,6 +18,8 @@ public class ProfileRepository {
     }
     //create method
     public void saveUser(){
+        String Sql = "INSERT INTO profile (username, password, email, phone) VALUES (?,?,?,?)";
+        
     }
     // Read Method
     public void readUser() {

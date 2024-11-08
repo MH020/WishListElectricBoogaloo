@@ -40,7 +40,7 @@ public class LoginController {
         }catch(Exception e){
             System.out.println("boooo: " + e);
         }
-        return "loginPage";
+        return "/login";
     }
 
 
