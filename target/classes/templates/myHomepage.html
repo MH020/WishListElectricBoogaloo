@@ -14,8 +14,8 @@
     </form>
 
     <ul>
-        <li><a th:href="@{/homepage/{profileID}/market(profileID = 1)}">Market</a></li>
-        <li><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}(profileID = 1, wishlistID = 1)}">My wishlist</a></li>
+        <li><a th:href="@{/homepage/{profileID}/market}">Market</a></li>
+        <li><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}}">My wishlist</a></li>
     </ul>
 
     <p> opret ny ønskeliste</p>
@@ -25,11 +25,11 @@
         </tr>
 
         <tr>
-            <td><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}(profileID = 1, wishlistID = 1)}">Min seje ønskeliste B-)</a></td>
+            <td><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}}">Min seje ønskeliste B-)</a></td>
             <td>sletknap</td>
         </tr>
         <tr>
-            <td><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}(profileID = 1, wishlistID = 2)}">Fødselsdag!!</a></td>
+            <td><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}}">Fødselsdag!!</a></td>
         </tr>
     </table>
 

@@ -40,7 +40,7 @@ public class LoginController {
         }catch(Exception e){
             System.out.println("boooo: " + e);
         }
-        return "/login";
+        return "/loginPage";
     }
 
 
@@ -53,6 +53,6 @@ public class LoginController {
     @PostMapping("/newProfile")
     public String postNewUser (@ModelAttribute Profile profile){
         ProfileService.saveUser(profile);
-        return "redirect: myHomePage";
+        return "redirect:/login";
     }
 }

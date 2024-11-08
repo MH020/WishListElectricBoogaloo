@@ -17,13 +17,13 @@ public class ProfileRepository {
         this.conn = connectionManager.getConnection();
     }
     //create method
-    public int  saveUser(Profile profile) {
-        String Sql = "INSERT INTO profile (username, password, email, phone) VALUES (?,?,?,?)";
+    public int saveUser(Profile profile) {
+        String Sql = "INSERT INTO Profile (username, password, email, phone) VALUES (?,?,?,?)";
     try (PreparedStatement preparedStatement = conn.prepareStatement(Sql,PreparedStatement.RETURN_GENERATED_KEYS)) {
-        preparedStatement.setString(1, "username");
-        preparedStatement.setString(2, "password");
-        preparedStatement.setString(3, "email");
-        preparedStatement.setString(4, "phone");
+        preparedStatement.setString(1, profile.getUsername());
+        preparedStatement.setString(2, profile.getPassword());
+        preparedStatement.setString(3, profile.getEmail());
+        preparedStatement.setString(4, profile.getPhoneNumber());
         preparedStatement.executeUpdate();
         ResultSet resultSet = preparedStatement.getGeneratedKeys();
         if (resultSet.next()) {
@@ -55,11 +55,10 @@ public class ProfileRepository {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
             if (resultSet.next()) {
                 Profile profile = new Profile();
-                profile.setId(resultSet.getInt("profile_id"));
-                profile.setUsername(resultSet.getString("username"));
-                profile.setPassword(resultSet.getString("password"));
-                profile.setEmail(resultSet.getString("email"));
-                profile.setPhoneNumber(resultSet.getString("phone"));
+                preparedStatement.setString(1, profile.getUsername());
+                preparedStatement.setString(2, profile.getPassword());
+                preparedStatement.setString(3, profile.getEmail());
+                preparedStatement.setString(4, profile.getPhoneNumber());
                 return profile;
             }
             } catch (SQLException e) {

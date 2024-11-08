@@ -17,8 +17,8 @@ import java.util.List;
             this.profileRepository = profileRepository;
             this.marketRepository = marketRepository;
         }
-        public int saveUser(Profile profile) {
-            return profileRepository.saveUser(profile);
+        public void saveUser(Profile profile) {
+            profileRepository.saveUser(profile);
         }
 
         //show local market
