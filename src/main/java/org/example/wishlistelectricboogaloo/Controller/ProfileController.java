@@ -34,7 +34,9 @@ public class ProfileController {
         //Integer profileID = (Integer) session.getAttribute("id");
         int market = profileService.getMarketByProfileID(profileID); //get market info based on profileID
         List<Product> products = profileService.getAllProducts(market); //get all products from market
+        //List(Wishlist) wishlists = wishlistService.getWishListByProfileID(profileID);
         model.addAttribute("products", products); //add products to model?
+        //model.addAttribute("wishlists", wishlists); //add wishlists to model?
         return "market";
     }
 
