@@ -41,8 +41,20 @@ public class ProfileRepository {
     public void updateUser(){
     }
     //delete Method
-    public void deleteUser() {
+    public void deleteUser(int profileID) {
+        String SQL = "Select from wishlist where profile_id = ?";
+        String SQL2 = "DELETE  FROM profile WHERE profile_id = ?";
+        String SQL3 = "DELETE  FROM wishlist WHERE profile_id = ?";
+        String SQL4 = "DELETE  FROM ProfileMarket WHERE profile_id = ?";
+        String SQL5 = "DELETE  FROM ProductWishlist WHERE wishlist_id = ?";
+        try (PreparedStatement preparedStatement = conn.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, profileID);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     //authenticate method
     public Profile authenticateProfile(String Username, String Password) {

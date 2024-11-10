@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS ProductWishlist (
 INSERT INTO Profile (username, password, profile_email, profile_phone)
 VALUES
     ('john_doe', 'password123', 'john.doe@example.com', '555-0101'),
-    ('test', 'test', 'jane.smith@example.com', '555-0102'),
+    ('test','test', 'jane.smith@example.com', '555-0102'),
     ('alice_jones', 'alicepass', 'alice.jones@example.com', '555-0103');
 
 
