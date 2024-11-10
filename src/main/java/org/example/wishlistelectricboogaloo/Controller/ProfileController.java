@@ -35,6 +35,10 @@ public class ProfileController {
     public String getMarket(Model model) {
         Integer profileID = (Integer) session.getAttribute("id");
         int market = profileService.getMarketByProfileID(profileID); //get market info based on profileID
+        //if market is 0, redirect to allMarkets so you can choose a market
+        if (market == 0) {
+            return "redirect:/homepage/{profileID}/allMarkets";
+        }
         List<Product> products = profileService.getAllProducts(market); //get all products from market
         //List(Wishlist) wishlists = wishlistService.getWishListByProfileID(profileID);
         model.addAttribute("products", products); //add products to model?

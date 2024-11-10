@@ -46,7 +46,6 @@ public class ProductRepository {
     //show market that user is connected to by profileId
     public int getMarketByProfileID(int profileId) {
         String sql = "select market_id from ProfileMarket where profile_id = ?";
-
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, profileId);
