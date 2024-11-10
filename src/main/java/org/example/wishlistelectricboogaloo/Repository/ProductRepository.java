@@ -1,6 +1,7 @@
 package org.example.wishlistelectricboogaloo.Repository;
 
 import org.example.wishlistelectricboogaloo.ConnectionManager;
+import org.example.wishlistelectricboogaloo.Model.Market;
 import org.example.wishlistelectricboogaloo.Model.Product;
 import org.springframework.stereotype.Repository;
 
@@ -59,4 +60,32 @@ public class ProductRepository {
         }
         return 0;
     }
+    //read Markets hjemmelavet metode
+    public List<Market> getAllMarkets() {
+        List <Market> markets = new ArrayList<>();
+        String Sql = "SELECT * FROM Market";
+        try (PreparedStatement preparedStatement = conn.prepareStatement(Sql)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int marketId = resultSet.getInt("market_id");
+                String city = resultSet.getString("market_city");
+                markets.add(new Market(marketId, city));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return markets;
+    }
+    //add market to user hjemmelavet metode
+    public void addMarketToUser(int profileId, int marketId) {
+        String sql = "INSERT INTO ProfileMarket (profile_id, market_id) VALUES (?, ?)";
+        try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.setInt(1, profileId);
+            preparedStatement.setInt(2, marketId);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -71,13 +71,6 @@ public class ProfileRepository {
         return null;
     }
 
-    public int getUserId(HttpSession session) {
-        Profile user = (Profile) session.getAttribute("user");
-        if (user != null) {
-            return user.getId();
-        }
-        return -1;
-    }
 
 
 }

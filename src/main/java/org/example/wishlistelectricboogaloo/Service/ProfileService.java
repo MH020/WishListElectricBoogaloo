@@ -1,5 +1,6 @@
 package org.example.wishlistelectricboogaloo.Service;
 
+import org.example.wishlistelectricboogaloo.Model.Market;
 import org.example.wishlistelectricboogaloo.Model.Product;
 import org.example.wishlistelectricboogaloo.Model.Profile;
 import org.example.wishlistelectricboogaloo.Repository.ProductRepository;
@@ -28,6 +29,14 @@ import java.util.List;
 
         public int getMarketByProfileID(int profileId) {
             return productRepository.getMarketByProfileID(profileId);
+        }
+        //hjemmelavet metode
+        public List <Market> getAllMarkets() {
+            return productRepository.getAllMarkets();
+        }
+        //also this one er hjemmelavet
+        public void addMarketToUser(int profileId, int marketId) {
+            productRepository.addMarketToUser(profileId, marketId);
         }
 
         public Profile authenticateProfile (String username, String password) {

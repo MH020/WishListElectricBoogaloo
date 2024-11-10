@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Markets List</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+</head>
+
+<body>
+<h1>Markets List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>City</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="market : ${allMarkets}">
+        <!-- Access city and marketId directly -->
+        <td th:text="${market.city}"></td>
+        <td>
+            <form th:action="@{/homepage/{profileID}/addMarket(profileID=${profileID})}" method="post">
+                <input type="hidden" th:name="marketId" th:value="${market.marketId}" />
+                <button type="submit">Add Market</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

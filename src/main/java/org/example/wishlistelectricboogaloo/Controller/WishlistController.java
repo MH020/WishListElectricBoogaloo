@@ -31,7 +31,6 @@ public class WishlistController {
     }
 
     @PostMapping("/update/{wishlistID}/addWish")
-
     public String updateWishlistAddProduct(@PathVariable int wishlistID,@RequestParam int productID){
         wishlistService.updateWishlistAddProduct(productID, wishlistID);
 

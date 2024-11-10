@@ -1,5 +1,6 @@
 package org.example.wishlistelectricboogaloo.Controller;
 import jakarta.servlet.http.HttpSession;
+import org.example.wishlistelectricboogaloo.Model.Market;
 import org.example.wishlistelectricboogaloo.Model.Product;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Service.ProfileService;
@@ -40,6 +41,22 @@ public class ProfileController {
         model.addAttribute("profileID", profileID);
         //model.addAttribute("wishlists", wishlists); //add wishlists to model?
         return "market";
+    }
+
+    @GetMapping("/allMarkets")
+    public String getAllMarkets(Model model){
+        Integer profileID = (Integer) session.getAttribute("id");
+        List<Market> markets = profileService.getAllMarkets();
+        model.addAttribute("allMarkets", markets);
+        model.addAttribute("profileID", profileID);
+        return "allMarkets";
+    }
+
+    @PostMapping("/addMarket")
+    public String addMarket(@RequestParam int marketId,@PathVariable int profileID){
+        Integer ID = (Integer) session.getAttribute("id");
+        profileService.addMarketToUser(ID, marketId);
+        return "redirect:/homepage/" + profileID;
     }
 
     @PostMapping("/logout")
