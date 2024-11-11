@@ -1,3 +1,17 @@
+:root{
+    --green: #8bca84;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Sans-Serif;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 2s linear;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -38,7 +52,7 @@ header{
     position: fixed;
     top: 0; left: 0; right: 0;
     background: #fff;
-    padding: 1rem 10%;
+    padding: 2rem 8%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -47,12 +61,5 @@ header{
 }
 
 header .logo span{
-    color:var();
-}
-
-header .navbar{
-   position: absolute;
-    top:0; left:0; right:0;
-    background: #eee;
-    border-top: .1rem solid rgba(0,0,0,.1);
+    color:var(--green);
 }

@@ -6,7 +6,10 @@
     <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
-<h1>Create New Profile</h1>
+<header>
+    <h1 class="logo">LocalWish<span>.</span></h1>
+</header>
+<h1>Create new profile</h1>
 <form th:action="@{/login/newProfile}" method="post" th:object="${newProfile}">
     <label class="large-text">Username:
         <input type="text" name="username" th:value="${newProfile.username}" required>
