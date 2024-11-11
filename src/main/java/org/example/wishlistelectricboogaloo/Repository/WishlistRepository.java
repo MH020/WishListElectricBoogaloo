@@ -74,14 +74,14 @@ public class WishlistRepository {
 
     public List<String> searchforWishlist(String search){
         List<String> results = new ArrayList<>();
-        String sql = "SELECT FROM wishlist WHERE name LIKE = ?";
+        String sql = "SELECT * FROM wishlist WHERE LOWER(wishlist_name) LIKE LOWER(?)";
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             // the % is a wildcard that allows us to search for a string that contains the search string
             preparedStatement.setString(1,"%" + search+ "%");
             //resultset is the result of the query
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    results.add(resultSet.getString("name"));
+                    results.add(resultSet.getString("wishlist_name"));
                 }
             }
         } catch (Exception e) {

@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title>Search for Wishlists</title>
     <link th:href="@{/style.css}" rel="stylesheet">
+</head>
 <body>
+<h1>Wishlist Search</h1>
+
 <!-- Search Form -->
-<form action="/searchWishlist" method="GET">
+<form action="/homepage/{profileID}/wishlist/searchWishlist" method="GET">
     <label for="search">Search Wishlists:</label>
     <input type="text" id="search" name="search" placeholder="Search..." required>
     <button type="submit">Search</button>
