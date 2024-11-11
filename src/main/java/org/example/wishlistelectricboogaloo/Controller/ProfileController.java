@@ -24,11 +24,15 @@ public class ProfileController {
         this.session = session;
     }
 
-    @GetMapping("")
-    public String getMyHomepage(Model model){
+    @GetMapping("/myHomepage")
+    public String getMyHomepage(Model model, @PathVariable int profileID) {
         model.addAttribute("wishlist", new Wishlist());
+
         model.addAttribute("profile_id", session.getAttribute("profile_id"));
+
+        //model.addAttribute("wishlist_overview", wishlistService.getAllWishLists(profileID));//jeg ved ikke hvad det er.
         return "myHomepage";
+
     }
 
     @GetMapping("/market")
