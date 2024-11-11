@@ -41,8 +41,8 @@ import java.util.List;
             return productRepository.getAllMarkets();
         }
         //also this one er hjemmelavet
-        public void addMarketToUser(int profileId, int marketId) {
-            productRepository.addMarketToUser(profileId, marketId);
+        public void addMarketToUser(int profile_id, int market_id) {
+            productRepository.addMarketToUser(profile_id, market_id);
         }
 
         public Profile authenticateProfile (String username, String password) {

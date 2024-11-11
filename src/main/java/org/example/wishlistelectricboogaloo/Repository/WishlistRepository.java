@@ -21,13 +21,13 @@ public class WishlistRepository {
     }
 
     //create a wishlist
-    public int createWishlist(Wishlist wishlist,int id) {
+    public int addWishlist(Wishlist wishlist,int wishlist_id) {
         String SQLInsertWishlist = "insert into wishlist (name,profile_id) values(?,?)";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLInsertWishlist, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, wishlist.getName());
-            preparedStatement.setInt(2, id);
+            preparedStatement.setInt(2, wishlist_id);
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {

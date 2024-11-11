@@ -77,7 +77,8 @@ public class ProfileController {
     @PostMapping("/addWishList")
     public String addWishList(Wishlist wishlist) {
         int profile_id = (int) session.getAttribute("profile_id");
-        wishlistService.createWishlist(wishlist,profile_id);
+        wishlistService.addWishlist(wishlist,profile_id);
         return "redirect:/homepage/" + profile_id;
     }
+
 }
