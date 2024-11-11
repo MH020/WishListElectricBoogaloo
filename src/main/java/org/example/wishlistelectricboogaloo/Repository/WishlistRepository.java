@@ -2,13 +2,13 @@ package org.example.wishlistelectricboogaloo.Repository;
 
 import jakarta.servlet.http.HttpSession;
 import org.example.wishlistelectricboogaloo.ConnectionManager;
+import org.example.wishlistelectricboogaloo.Model.Product;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.sql.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +57,81 @@ public class WishlistRepository {
             e.printStackTrace();
         }
     }
+
+
+    public Wishlist getWishlist(int profileID, int wishlistID){
+        String SQLGetwishlist = "SELECT * FROM wishlist WHERE profile_id = ? AND wishlist_id = ?";
+        Wishlist wishlist = new Wishlist();
+
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement(SQLGetwishlist);
+            preparedStatement.setInt(1, profileID);
+            preparedStatement.setInt(2, wishlistID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                wishlist.setId(resultSet.getInt("wishlist_id"));
+                wishlist.setName(resultSet.getString("name"));
+                wishlist.setProfileId(resultSet.getInt("profile_id"));
+
+                wishlist.setProducts(getAllProductsBelongingToWishlist(wishlistID));
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return wishlist;
+    }
+
+    public List<Product> getAllProductsBelongingToWishlist(int wishlistID){
+        List <Integer> productIDs = getProductIDfromJoinTable(wishlistID);
+        List<Product> productList = new ArrayList<>();
+
+        String SQLgetproductsfromProductTable = "SELECT * FROM product WHERE product_id = ?";
+
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement(SQLgetproductsfromProductTable);
+
+            for (Integer productID : productIDs){
+                preparedStatement.setInt(1, productID);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                //adding product to productlist:
+                while(resultSet.next()){
+                    String productName = resultSet.getString("name");
+                    String productDesc = resultSet.getString("description");
+                    double productPrice = resultSet.getDouble("price");
+                    productList.add(new Product(productID,productName,productDesc,productPrice));
+                }
+            }//end of for each loop
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return productList;
+    }
+
+    public List<Integer> getProductIDfromJoinTable(int wishlistID){
+        String SQLproductjoinwishlist = "SELECT * FROM Joined_Wishlist_and_Products WHERE wishlist_id = ?";
+
+        List <Integer> productIDs = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(SQLproductjoinwishlist);
+            preparedStatement.setInt(1, wishlistID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                productIDs.add(resultSet.getInt("product_id"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return productIDs;
+
+    }
+
     public boolean updateWishlistAddProduct(int productId, int wishlistId) {
 
         String sql = "INSERT INTO Joined_Wishlist_And_Products (wishlist_id, product_id) VALUES (?, ?)";

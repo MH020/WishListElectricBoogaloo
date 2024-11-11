@@ -5,6 +5,7 @@
     <title>My homepage</title>
     <link th:href="@{/style.css}" rel="stylesheet">
 </head>
+
 <body>
     <h1> My homepage</h1>
     <p> endpoint: /homepage/{profileID}</p>
@@ -23,7 +24,13 @@
         <li><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}}">My wishlist</a></li>
     </ul>
 
-    <p> opret ny ønskeliste</p>
+    <p> Create new wishlist</p>
+    <form method="post" th:action="@{/homepage/{profileID}/addWishList (profileID = 1)}" th:object="${wishlist}" style="display:inline;">
+        <label for="option1">Name:</label>
+        <input type="text" id="option1" name="name" th:value="${wishlist.name}"> <br>
+        <button type="submit">submit</button>
+    </form>
+
     <table>
         <tr>
             <th>My Wishlists:</th>
@@ -34,7 +41,9 @@
             <td>sletknap</td>
         </tr>
         <tr>
-            <td><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}}">Fødselsdag!!</a></td>
+
+            <td><a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID}(profileID = 2, wishlistID = 1)}">Fødselsdag!!</a></td>
+
         </tr>
     </table>
 

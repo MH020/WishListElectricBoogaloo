@@ -6,6 +6,7 @@
     <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
+
 <h1>Login</h1>
 
 <form th:action="@{/login}" method="post" th:object="${user}">
@@ -15,8 +16,10 @@
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" th:value="${user.password}" required><br>
 
+
     <button type="submit">Login</button>
 </form>
+
 
 <p>Login functionality: form and button.</p>
 <p>Link to create new profile page:</p>
@@ -25,5 +28,6 @@
 <ul>
     <li><a th:href="@{/login/newProfile}">Create new profile</a></li>
 </ul>
+
 </body>
 </html>
