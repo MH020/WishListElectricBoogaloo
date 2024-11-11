@@ -37,11 +37,15 @@ public class WishlistController {
 
         return "redirect: market";
     }
+
+    @GetMapping("/searchbar")
+    public String SearchBar(){
+        return "Searchbar";
+    }
     @GetMapping("/searchWishlist")
-    public String searchWishlist(@RequestParam String search, Model model){
+    public String searchWishlist(@RequestParam(value = "search", required = false) String search, Model model){
         List<String> wishlistsSearchResults  = wishlistService.searchforWishlist(search);
         model.addAttribute("wishlistsSearchResults", wishlistsSearchResults);
-
-        return "searchResult";
+        return "searchWishlist";
     }
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Search for Wishlists</title>
+  <link th:href="@{/style.css}" rel="stylesheet">
+</head>
+<body>
+<h1>Wishlist Search</h1>
+<!-- Results Table -->
+<h2>Search Results</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Wishlist</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="result : ${wishlistsSearchResults}">
+    <td th:text="${result}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
