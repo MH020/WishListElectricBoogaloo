@@ -59,8 +59,8 @@ public class WishlistRepository {
     }
 
     // Get all wishlists
-    public List<Wishlist> getAllWishLists(int profileId) {
-        String SQLReadFromWishlist = "SELECT * From Wishlist where profile_ID = ?";
+    public List<Wishlist> getAllWishLists(int profile_id) {
+        String SQLReadFromWishlist = "SELECT * From Wishlist where profile_id = ?";
         List<Wishlist> allWishList = new ArrayList<>();
 
         try {
@@ -68,10 +68,9 @@ public class WishlistRepository {
             //preparedStatement.setInt(1, profileId);
             ResultSet resultset = preparedStatement.executeQuery();
             while(resultset.next()) {
-                int profile_id = resultset.getInt("profile_id");
-                String name = resultset.getString("profile_name");
-              //  Wishlist wishlist = new Wishlist(profile_id);
-             //   allWishList.add(wishlist);
+
+               Wishlist wishlist = new Wishlist(profile_id);
+               allWishList.add(wishlist);
             }
         } catch (Exception e) {
             e.printStackTrace();

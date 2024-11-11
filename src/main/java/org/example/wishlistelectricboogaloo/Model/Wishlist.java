@@ -4,13 +4,14 @@ import java.util.List;
 
 public class Wishlist {
    private int id;
-   private int profileId;
+   private int profile_id;
    private String name;
    private List<Product> products;
 
    public Wishlist() {
    }
-
+    public Wishlist(profile_id) {
+    }
    public int getId() {
       return id;
 
@@ -20,11 +21,11 @@ public class Wishlist {
 
     }
     public int getProfileId() {
-        return profileId;
+        return profile_id;
 
     }
     public void setProfileId(int profileId) {
-       this.profileId = profileId;
+       this.profile_id = profileId;
     }
     public String getName() {
        return name;
