@@ -34,9 +34,10 @@ public class WishlistController {
     }
 
     @PostMapping("/update/{wishlistID}/addWish")
-    public String updateWishlistAddProduct(@RequestParam int productID, @RequestParam int wishlistID){
-        //wishlistService.updateWishlistAddProduct(wishlistID, productID); // Add the product to the selected wishlist
-        return "redirect: homepage/{profileID}/market";
+    public String updateWishlistAddProduct(@PathVariable int wishlistID,@RequestParam int productID){
+        wishlistService.updateWishlistAddProduct(productID, wishlistID);
+
+        return "redirect: market";
 
     }
 }

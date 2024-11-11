@@ -31,12 +31,13 @@ public class ProfileController {
     }
 
     @GetMapping("/market")
-    public String getMarket(@PathVariable int profileID, Model model) {
-        //Integer profileID = (Integer) session.getAttribute("id");
+    public String getMarket(Model model) {
+        Integer profileID = (Integer) session.getAttribute("id");
         int market = profileService.getMarketByProfileID(profileID); //get market info based on profileID
         List<Product> products = profileService.getAllProducts(market); //get all products from market
         //List(Wishlist) wishlists = wishlistService.getWishListByProfileID(profileID);
         model.addAttribute("products", products); //add products to model?
+        model.addAttribute("profileID", profileID);
         //model.addAttribute("wishlists", wishlists); //add wishlists to model?
         return "market";
     }

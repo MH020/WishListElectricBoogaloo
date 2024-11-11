@@ -22,7 +22,13 @@ public class WishlistService {
         wishlistRepository.deleteWishlist(id);
     }
 
-    public Wishlist getWishlist(int profileID, int wishlistID){
+
+    public Wishlist getWishlist(int profileID, int wishlistID) {
         return wishlistRepository.getWishlist(profileID, wishlistID);
+
+    }
+
+    public boolean updateWishlistAddProduct(int productID, int wishlistId){
+        return wishlistRepository.updateWishlistAddProduct(productID,wishlistId);
     }
 }

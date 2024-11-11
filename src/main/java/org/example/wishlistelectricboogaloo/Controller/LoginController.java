@@ -27,7 +27,6 @@ public class LoginController {
     @PostMapping("")
     public String postLogin(@ModelAttribute Profile profile, HttpSession session) {
         //if the profile is authenticated, the profile is redirected to their homepage
-
         try {
             Profile realUser = ProfileService.authenticateProfile(profile.getUsername(), profile.getPassword());
 
@@ -40,17 +39,19 @@ public class LoginController {
         }catch(Exception e){
             System.out.println("boooo: " + e);
         }
-        return "loginPage";
+        return "/loginPage";
     }
 
 
     @GetMapping("/newProfile")
-    public String getNewProfilePage(){
+    public String getNewProfilePage(Model model){
+        model.addAttribute("newProfile", new Profile());
         return "newProfile";
     }
 
     @PostMapping("/newProfile")
-    public String postNewUser (){
-        return "redirect: myHomePage";
+    public String postNewUser (@ModelAttribute Profile profile){
+        ProfileService.saveUser(profile);
+        return "redirect:/login";
     }
 }
