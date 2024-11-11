@@ -32,12 +32,12 @@ public class LoginController {
 
 
         if (realUser != null) {
-            session.setAttribute("id",realUser.getId());
-            System.out.println("id: " + session.getAttribute("id"));
+            session.setAttribute("profile_id",realUser.getId());
+            System.out.println("profile_id: " + session.getAttribute("profile_id"));
             return "redirect:/homepage/" + realUser.getId();
         }
         }catch(Exception e){
-            System.out.println("boooo: " + e);
+            System.out.println("fejl: " + e);
         }
         return "/loginPage";
     }
