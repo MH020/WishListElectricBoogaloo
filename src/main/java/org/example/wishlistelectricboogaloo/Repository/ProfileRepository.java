@@ -58,7 +58,7 @@ public class ProfileRepository {
 
     //authenticate method
     public Profile authenticateProfile(String Username, String Password) {
-        String SQLcheck = "SELECT * FROM profile WHERE username = ? AND password = ?";
+        String SQLcheck = "SELECT * FROM Profile WHERE username = ? AND password = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQLcheck, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, Username);
             preparedStatement.setString(2, Password);

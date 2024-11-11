@@ -42,7 +42,7 @@ public class WishlistRepository {
     public void deleteWishlist(int id){
         int updatedRows = 0;
         String SQlDeleteFromWishlist = "Delete from Wishlist where wishlist_id = ?";
-        String SQlDeleteFromJoinedTable ="DELETE FROM Joined wishlist and products where id = ?";
+        String SQlDeleteFromJoinedTable ="DELETE FROM ProductWishlist where id = ?";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQlDeleteFromWishlist)) {
             preparedStatement.setInt(1, id);
@@ -113,7 +113,7 @@ public class WishlistRepository {
     }
 
     public List<Integer> getProductIDfromJoinTable(int wishlistID){
-        String SQLproductjoinwishlist = "SELECT * FROM Joined_Wishlist_and_Products WHERE wishlist_id = ?";
+        String SQLproductjoinwishlist = "SELECT * FROM ProductWishlist WHERE wishlist_id = ?";
 
         List <Integer> productIDs = new ArrayList<>();
         try {
@@ -134,7 +134,7 @@ public class WishlistRepository {
 
     public boolean updateWishlistAddProduct(int productId, int wishlistId) {
 
-        String sql = "INSERT INTO Joined_Wishlist_And_Products (wishlist_id, product_id) VALUES (?, ?)";
+        String sql = "INSERT INTO ProductWishlist (wishlist_id, product_id) VALUES (?, ?)";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             preparedStatement.setInt(1, wishlistId);
@@ -149,7 +149,7 @@ public class WishlistRepository {
 
     public List<String> searchforWishlist(String search){
         List<String> results = new ArrayList<>();
-        String sql = "SELECT * FROM wishlist WHERE LOWER(wishlist_name) LIKE LOWER(?)";
+        String sql = "SELECT * FROM Wishlist WHERE LOWER(wishlist_name) LIKE LOWER(?)";
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             // the % is a wildcard that allows us to search for a string that contains the search string
             preparedStatement.setString(1,"%" + search+ "%");
