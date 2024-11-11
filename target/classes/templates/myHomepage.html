@@ -10,10 +10,6 @@
     <h1> My homepage</h1>
     <p> endpoint: /homepage/{profileID}</p>
 
-    <form method="get" th:action="@{/login}" style="display:inline;">
-        <button type="submit">log ud</button>
-    </form>
-
     <form method="get" th:action="@{/homepage/{profileID}/market (profileID = ${profileID})}" style="display:inline;">
     <button type="submit">Market</button>
     </form>
@@ -46,6 +42,10 @@
 
         </tr>
     </table>
+
+    <form class="navbar" method="get" th:action="@{/login}" style="display:inline;">
+        <button type="submit">Log out</button>
+    </form>
 
     <p> slet profil</p>
 </body>

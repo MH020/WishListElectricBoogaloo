@@ -7,22 +7,21 @@
 </head>
 <body>
 
+<header>
+    <h1 class="logo">LocalWish<span>.</span></h1>
+</header>
+
 <h1>Login</h1>
 
 <form th:action="@{/login}" method="post" th:object="${user}">
-    <label for="username">Username:</label>
+    <label class="large-text" for="username">Username: </label>
     <input type="text" id="username" name="username" th:value="${user.username}" required><br>
 
-    <label for="password">Password:</label>
+    <label class="large-text" for="password">Password: </label>
     <input type="password" id="password" name="password" th:value="${user.password}" required><br>
-
 
     <button type="submit">Login</button>
 </form>
-
-
-<p>Login functionality: form and button.</p>
-<p>Link to create new profile page:</p>
 
 <!-- Link to create new profile -->
 <ul>
