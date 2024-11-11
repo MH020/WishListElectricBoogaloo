@@ -1,0 +1,17 @@
+table {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+td, th{
+    border: 1px solid darkslategray;
+}
+
+table-header{
+    text-align: center;
+    font-size: x-large;
+}
+
+p{
+    color: darkslategray;
+}

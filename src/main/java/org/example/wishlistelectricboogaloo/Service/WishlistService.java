@@ -23,7 +23,14 @@ public class WishlistService {
     public void deleteWishlist(int id) {
         wishlistRepository.deleteWishlist(id);
     }
-    public boolean updateWishlistAddProduct(int productID, int wishlistId) {
+
+
+    public Wishlist getWishlist(int profileID, int wishlistID) {
+        return wishlistRepository.getWishlist(profileID, wishlistID);
+
+    }
+
+    public boolean updateWishlistAddProduct(int productID, int wishlistId){
         return wishlistRepository.updateWishlistAddProduct(productID,wishlistId);
     }
     public List<String> searchforWishlist(String search){
