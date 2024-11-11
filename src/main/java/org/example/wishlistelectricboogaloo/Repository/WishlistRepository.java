@@ -69,9 +69,9 @@ public class WishlistRepository {
             ResultSet resultset = preparedStatement.executeQuery();
             while(resultset.next()) {
                 int profile_id = resultset.getInt("profile_id");
-                String name = resultset.getString("proflie_name");
-                Wishlist wishlist = new Wishlist(profile_id, profile_name);
-                allWishList.add(wishlist);
+                String name = resultset.getString("profile_name");
+              //  Wishlist wishlist = new Wishlist(profile_id);
+             //   allWishList.add(wishlist);
             }
         } catch (Exception e) {
             e.printStackTrace();

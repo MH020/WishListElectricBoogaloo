@@ -21,7 +21,7 @@ public class WishlistController {
 
     @PostMapping("/delete/{wishlistID}")
     public String deleteWishlist(@PathVariable int wishlistID){
-        wishlistService.deleteWishlist(wishlistID);
+        wishlistService.deleteWishlist(wishlist_id);
         return "redirect: myHomepage";
     }
 

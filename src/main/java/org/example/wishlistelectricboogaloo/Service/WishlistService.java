@@ -16,19 +16,19 @@ public class WishlistService {
     }
 
     // Create a new wishlist
-    public int createWishlist(Wishlist wishlist,int id ) {
-        return wishlistRepository.createWishlist(wishlist,id);
+    public int createWishlist(Wishlist wishlist,int profile_id ) {
+        return wishlistRepository.createWishlist(wishlist,profile_id);
     }
     //Get all wishlists
-    public List<Wishlist> getAllWishLists(int profileId) {
-        return wishlistRepository.getAllWishLists(profileId);
-    }
 
+    public List<Wishlist> getAllWishLists(int profile_id) {
+        return wishlistRepository.getAllWishLists(profile_id);
+    }
     //delete a wishlist
-    public void deleteWishlist(int id) {
+    public void deleteWishlist(int wishlist_id) {
         wishlistRepository.deleteWishlist(id);
     }
-    public boolean updateWishlistAddProduct(int productID, int wishlistId) {
-        return wishlistRepository.updateWishlistAddProduct(productID,wishlistId);
+    public boolean updateWishlistAddProduct(int product_id, int wishlist_id) {
+        return wishlistRepository.updateWishlistAddProduct(product_id,wishlist_id);
     }
 }

@@ -23,9 +23,9 @@ public class ProfileController {
         this.session = session;
     }
 
-    @GetMapping("")
+    @GetMapping("/myHomepage")
     public String getMyHomepage(Model model, @PathVariable int profileID) {
-        model.addAttribute("wishlist", new Wishlist());// skab en metode til at lave en ønskeliste
+        model.addAttribute("wishlist", new Wishlist());
         model.addAttribute("wishlist_overview", wishlistService.getAllWishLists(profileID));
         return "myHomepage";
 
