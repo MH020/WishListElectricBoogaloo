@@ -5,6 +5,8 @@ import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Repository.WishlistRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WishlistService {
     private final WishlistRepository wishlistRepository;
@@ -23,5 +25,8 @@ public class WishlistService {
     }
     public boolean updateWishlistAddProduct(int productID, int wishlistId) {
         return wishlistRepository.updateWishlistAddProduct(productID,wishlistId);
+    }
+    public List<String> searchforWishlist(String search){
+        return wishlistRepository.searchforWishlist(search);
     }
 }

@@ -1,10 +1,11 @@
 package org.example.wishlistelectricboogaloo.Controller;
 
-import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/homepage/{profileID}/wishlist")
@@ -35,5 +36,12 @@ public class WishlistController {
         wishlistService.updateWishlistAddProduct(productID, wishlistID);
 
         return "redirect: market";
+    }
+    @GetMapping("/searchWishlist")
+    public String searchWishlist(@RequestParam String search, Model model){
+        List<String> wishlistsSearchResults  = wishlistService.searchforWishlist(search);
+        model.addAttribute("wishlistsSearchResults", wishlistsSearchResults);
+
+        return "searchResult";
     }
 }

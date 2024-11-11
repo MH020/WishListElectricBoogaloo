@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class WishlistRepository {
@@ -68,6 +70,24 @@ public class WishlistRepository {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public List<String> searchforWishlist(String search){
+        List<String> results = new ArrayList<>();
+        String sql = "SELECT FROM wishlist WHERE name LIKE = ?";
+        try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            // the % is a wildcard that allows us to search for a string that contains the search string
+            preparedStatement.setString(1,"%" + search+ "%");
+            //resultset is the result of the query
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    results.add(resultSet.getString("name"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return results;
     }
 
 }
