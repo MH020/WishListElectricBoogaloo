@@ -12,7 +12,6 @@ public class Market {
     public String getCity() {
         return city;
     }
-
     //Setters
     public void setMarketId(int marketId) {
         this.marketId = marketId;

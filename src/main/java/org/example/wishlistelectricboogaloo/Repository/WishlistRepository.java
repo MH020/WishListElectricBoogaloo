@@ -129,8 +129,23 @@ public class WishlistRepository {
         return productList;
     }
 
+    public List<Integer> getProductIDfromJoinTable(int wishlistID){
+        String SQLproductjoinwishlist = "SELECT * FROM ProductWishlist WHERE wishlist_id = ?";
 
+        List <Integer> productIDs = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(SQLproductjoinwishlist);
+            preparedStatement.setInt(1, wishlistID);
 
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                productIDs.add(resultSet.getInt("product_id"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return productIDs;
+    }
     public boolean updateWishlistAddProduct(int product_id, int wishlist_id) {
 
         String sql = "INSERT INTO Joined_Wishlist_And_Products (wishlist_id, product_id) VALUES (?, ?)";
