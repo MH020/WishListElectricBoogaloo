@@ -65,6 +65,7 @@ public class ProfileController {
         return "redirect:/homepage/" + profile_id;
     }
 
+
     @PostMapping("/logout")
     public String postLogout(HttpSession session){
         session.invalidate();
