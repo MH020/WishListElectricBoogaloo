@@ -16,7 +16,13 @@
     <h1> My homepage</h1>
     <p> endpoint: /homepage/{profileID}</p>
 
-    <form method="get" th:action="@{/homepage/{profileID}/market (profileID = ${profileID})}" style="display:inline;">
+
+    <form method="get" th:action="@{/login}" style="display:inline;">
+        <button type="submit">log ud</button>
+    </form>
+
+    <form method="get" th:action="@{/homepage/{profileID}/market (profileID = ${profile_id})}" style="display:inline;">
+
     <button type="submit">Market</button>
     </form>
 

@@ -20,14 +20,15 @@ public class WishlistController {
     }
 
     @GetMapping("/view/{wishlistID}")
-    public String getWishlist(Model model, @PathVariable int profileID, @PathVariable int wishlistID){
-        model.addAttribute("wishlist", wishlistService.getWishlist(profileID, wishlistID));
+    public String getWishlist(Model model, @PathVariable int profile_id, @PathVariable int wishlist_id) {
+        model.addAttribute("wishlist", wishlistService.getWishlist(profile_id, wishlist_id));
         return "myWishlist";
     }
 
     @PostMapping("/delete/{wishlistID}")
-    public String deleteWishlist(@PathVariable int wishlistID){
-        wishlistService.deleteWishlist(wishlistID);
+    public String deleteWishlist(@PathVariable int wishlist_id){
+
+        wishlistService.deleteWishlist(wishlist_id);
         return "redirect: myHomepage";
     }
 
@@ -37,11 +38,9 @@ public class WishlistController {
     }
 
     @PostMapping("/update/{wishlistID}/addWish")
-    public String updateWishlistAddProduct(@PathVariable int wishlistID,@RequestParam int productID){
-        wishlistService.updateWishlistAddProduct(productID, wishlistID);
-
+    public String updateWishlistAddProduct(@PathVariable int wishlist_id,@RequestParam int product_id){
+        wishlistService.updateWishlistAddProduct(product_id, wishlist_id);
         return "redirect: market";
-
     }
 
     @GetMapping("/searchbar")

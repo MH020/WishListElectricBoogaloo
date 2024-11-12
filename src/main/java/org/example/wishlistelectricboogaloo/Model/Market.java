@@ -1,30 +1,29 @@
 package org.example.wishlistelectricboogaloo.Model;
 
 public class Market {
-    private int marketId;
-    private String city;
+    private int market_id;
+    private String market_city;
 
     //Getters
     public int getMarketId() {
-        return marketId;
+        return market_id;
     }
 
     public String getCity() {
-        return city;
+        return market_city;
     }
-
     //Setters
     public void setMarketId(int marketId) {
-        this.marketId = marketId;
+        this.market_id = marketId;
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.market_city = city;
     }
 
     //Constructor
     public Market(int marketId, String city) {
-        this.marketId = marketId;
-        this.city = city;
+        this.market_id = marketId;
+        this.market_city = city;
     }
 }

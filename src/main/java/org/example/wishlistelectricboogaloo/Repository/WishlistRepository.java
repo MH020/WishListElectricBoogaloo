@@ -6,9 +6,7 @@ import org.example.wishlistelectricboogaloo.Model.Product;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.springframework.stereotype.Repository;
 
-
 import java.sql.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +19,9 @@ public class WishlistRepository {
     }
 
     //create a wishlist
-    public int createWishlist(Wishlist wishlist,int wishlist_id) {
-        String SQLInsertWishlist = "insert into wishlist (wishlist_name,profile_id) values(?,?)";
+    public int addWishlist(Wishlist wishlist,int wishlist_id) {
+        String SQLInsertWishlist = "insert into wishlist (name,profile_id) values(?,?)";
+
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLInsertWishlist, Statement.RETURN_GENERATED_KEYS);
@@ -59,6 +58,25 @@ public class WishlistRepository {
     }
 
 
+    // Get all wishlists
+    public List<Wishlist> getAllWishLists(int profile_id) {
+        String SQLReadFromWishlist = "SELECT * From Wishlist where profile_id = ?";
+        List<Wishlist> allWishList = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(SQLReadFromWishlist);
+            preparedStatement.setInt(1, profile_id);
+            ResultSet resultset = preparedStatement.executeQuery();
+            while(resultset.next()) {
+               Wishlist wishlist = new Wishlist(profile_id);
+               allWishList.add(wishlist);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allWishList ;
+//Der skal laves en HTML til AllWishlists metode
+    }
     public Wishlist getWishlist(int profileID, int wishlistID){
         String SQLGetwishlist = "SELECT * FROM wishlist WHERE profile_id = ? AND wishlist_id = ?";
         Wishlist wishlist = new Wishlist();
@@ -71,8 +89,10 @@ public class WishlistRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
-                wishlist.setId(resultSet.getInt("wishlist_id"));
+
+                wishlist.setWishlist_id(resultSet.getInt("wishlist_id"));
                 wishlist.setName(resultSet.getString("wishlist_name"));
+
                 wishlist.setProfileId(resultSet.getInt("profile_id"));
 
                 wishlist.setProducts(getAllProductsBelongingToWishlist(wishlistID));
@@ -127,18 +147,14 @@ public class WishlistRepository {
         }catch(SQLException e){
             e.printStackTrace();
         }
-
         return productIDs;
-
     }
+    public boolean updateWishlistAddProduct(int product_id, int wishlist_id) {
 
-    public boolean updateWishlistAddProduct(int productId, int wishlistId) {
-
-        String sql = "INSERT INTO ProductWishlist (wishlist_id, product_id) VALUES (?, ?)";
-
+        String sql = "INSERT INTO Joined_Wishlist_And_Products (wishlist_id, product_id) VALUES (?, ?)";
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-            preparedStatement.setInt(1, wishlistId);
-            preparedStatement.setInt(2, productId);
+            preparedStatement.setInt(1, wishlist_id);
+            preparedStatement.setInt(2, product_id);
             int rowsEffected = preparedStatement.executeUpdate();
             return rowsEffected > 0;
         } catch (Exception e) {
@@ -149,14 +165,14 @@ public class WishlistRepository {
 
     public List<String> searchforWishlist(String search){
         List<String> results = new ArrayList<>();
-        String sql = "SELECT * FROM Wishlist WHERE LOWER(wishlist_name) LIKE LOWER(?)";
+        String sql = "SELECT FROM wishlist WHERE name LIKE = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             // the % is a wildcard that allows us to search for a string that contains the search string
             preparedStatement.setString(1,"%" + search+ "%");
             //resultset is the result of the query
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    results.add(resultSet.getString("wishlist_name"));
+                    results.add(resultSet.getString("name"));
                 }
             }
         } catch (Exception e) {

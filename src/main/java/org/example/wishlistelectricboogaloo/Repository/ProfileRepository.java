@@ -41,14 +41,14 @@ public class ProfileRepository {
     public void updateUser(){
     }
     //delete Method
-    public void deleteUser(int profileID) {
+    public void deleteUser(int profile_id) {
         String SQL = "Select from wishlist where profile_id = ?";
         String SQL2 = "DELETE  FROM profile WHERE profile_id = ?";
         String SQL3 = "DELETE  FROM wishlist WHERE profile_id = ?";
         String SQL4 = "DELETE  FROM ProfileMarket WHERE profile_id = ?";
         String SQL5 = "DELETE  FROM ProductWishlist WHERE wishlist_id = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQL)) {
-            preparedStatement.setInt(1, profileID);
+            preparedStatement.setInt(1, profile_id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,11 +57,11 @@ public class ProfileRepository {
 
 
     //authenticate method
-    public Profile authenticateProfile(String Username, String Password) {
-        String SQLcheck = "SELECT * FROM Profile WHERE username = ? AND password = ?";
+    public Profile authenticateProfile(String username, String password) {
+        String SQLcheck = "SELECT * FROM profile WHERE username = ? AND password = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQLcheck, PreparedStatement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, Username);
-            preparedStatement.setString(2, Password);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
 
             //sees if there is a resultSet in the database that matches the username and password entered by the user and returns true if there is
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
