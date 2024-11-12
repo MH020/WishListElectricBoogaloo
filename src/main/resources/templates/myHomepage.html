@@ -23,6 +23,10 @@
 <form method="get" th:action="@{/homepage/{profileID}/market (profileID = ${profile_id})}" style="display:inline;">
     <button type="submit">Market</button>
 </form>
+<!-- Searchbar -->
+<form method="get" th:action="@{/homepage/{profileID}/wishlist/searchbar}" style="display:inline;">
+    <button type="submit">Search</button>
+</form>
 
 <p>Create new wishlist</p>
 <form method="post" th:action="@{/homepage/{profileID}/addWishList}" th:object="${wishlist}" style="display:inline;">

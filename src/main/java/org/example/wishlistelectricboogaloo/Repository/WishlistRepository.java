@@ -168,7 +168,7 @@ public class WishlistRepository {
 
     public List<String> searchforWishlist(String search){
         List<String> results = new ArrayList<>();
-        String sql = "SELECT FROM wishlist WHERE wishlist_name LIKE = ?";
+        String sql = "SELECT wishlist_name FROM Wishlist WHERE wishlist_name LIKE ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             // the % is a wildcard that allows us to search for a string that contains the search string
             preparedStatement.setString(1,"%" + search+ "%");

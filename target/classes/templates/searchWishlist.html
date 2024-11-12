@@ -26,5 +26,16 @@
   </tbody>
 </table>
 
+<!-- Navigation Buttons -->
+<div style="margin-top: 20px;">
+  <form th:action="@{/homepage/{profileID}/wishlist/searchbar}" method="get" style="display: inline;">
+    <button type="submit">Back to Search</button>
+  </form>
+
+  <form th:action="@{/homepage/{profileID}}" method="get" style="display: inline;">
+    <button type="submit">Back to Homepage</button>
+  </form>
+</div>
+
 </body>
 </html>
