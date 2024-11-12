@@ -84,7 +84,6 @@ public class WishlistRepository {
     public boolean updateWishlistAddProduct(int product_id, int wishlist_id) {
 
         String sql = "INSERT INTO Joined_Wishlist_And_Products (wishlist_id, product_id) VALUES (?, ?)";
-
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             preparedStatement.setInt(1, wishlist_id);
             preparedStatement.setInt(2, product_id);

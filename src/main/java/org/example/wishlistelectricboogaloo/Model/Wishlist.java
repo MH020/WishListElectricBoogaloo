@@ -3,7 +3,7 @@ package org.example.wishlistelectricboogaloo.Model;
 import java.util.List;
 
 public class Wishlist {
-   private int id;
+   private int wishlist_id;
    private int profile_id;
    private String name;
    private List<Product> products;
@@ -15,7 +15,7 @@ public class Wishlist {
    }
 
 
-    public int getProfileId() {
+    public int getProfile_id() {
         return profile_id;
 
     }
@@ -39,5 +39,12 @@ public class Wishlist {
     public String getCity() {
        return name;
     }
+    public void setWishlist_id(int wishlist_id) {
+       this.wishlist_id = wishlist_id;
+    }
+    public int getWishlist_id() {
+       return wishlist_id;
+    }
+
 
 }
