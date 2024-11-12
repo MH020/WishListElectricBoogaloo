@@ -22,6 +22,7 @@ public class WishlistRepository {
     public int addWishlist(Wishlist wishlist,int wishlist_id) {
         String SQLInsertWishlist = "insert into wishlist (name,profile_id) values(?,?)";
 
+
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLInsertWishlist, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, wishlist.getName());
@@ -40,7 +41,7 @@ public class WishlistRepository {
     public void deleteWishlist(int wishlist_id){
         int updatedRows = 0;
         String SQlDeleteFromWishlist = "Delete from Wishlist where wishlist_id = ?";
-        String SQlDeleteFromJoinedTable ="DELETE FROM Joined wishlist and products where id = ?";
+        String SQlDeleteFromJoinedTable ="DELETE FROM ProductWishlist where wishlist_id = ?";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQlDeleteFromWishlist)) {
             preparedStatement.setInt(1, wishlist_id);
@@ -88,8 +89,10 @@ public class WishlistRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
+
                 wishlist.setWishlist_id(resultSet.getInt("wishlist_id"));
-                wishlist.setName(resultSet.getString("name"));
+                wishlist.setName(resultSet.getString("wishlist_name"));
+
                 wishlist.setProfileId(resultSet.getInt("profile_id"));
 
                 wishlist.setProducts(getAllProductsBelongingToWishlist(wishlistID));
@@ -117,9 +120,9 @@ public class WishlistRepository {
 
                 //adding product to productlist:
                 while(resultSet.next()){
-                    String productName = resultSet.getString("name");
-                    String productDesc = resultSet.getString("description");
-                    double productPrice = resultSet.getDouble("price");
+                    String productName = resultSet.getString("product_name");
+                    String productDesc = resultSet.getString("product_description");
+                    double productPrice = resultSet.getDouble("product_price");
                     productList.add(new Product(productID,productName,productDesc,productPrice));
                 }
             }//end of for each loop
@@ -177,5 +180,4 @@ public class WishlistRepository {
         }
         return results;
     }
-
 }
