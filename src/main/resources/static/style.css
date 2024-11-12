@@ -72,7 +72,7 @@ header .logo span{
     color:var(--green);
 }
 
-input[type="text"], input[type="password"], textarea {
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], textarea {
     font-size: 1.2em; /*font size*/
     padding: 0.1em; /*padding*/
     width: 50%; /*width on box*/
