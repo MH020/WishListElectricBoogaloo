@@ -77,7 +77,7 @@ input[type="text"], input[type="password"], textarea {
 }
 
 .image-row img{
-    margin: 0 10px;
+    margin: 0 5px;
     max-width: 700px; /*width of pictures*/
     height: auto;
 }

@@ -21,13 +21,13 @@ public class WishlistRepository {
     }
 
     //create a wishlist
-    public int createWishlist(Wishlist wishlist,int id) {
-        String SQLInsertWishlist = "insert into wishlist (name,profile_id) values(?,?)";
+    public int createWishlist(Wishlist wishlist,int wishlist_id) {
+        String SQLInsertWishlist = "insert into wishlist (wishlist_name,profile_id) values(?,?)";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLInsertWishlist, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, wishlist.getName());
-            preparedStatement.setInt(2, id);
+            preparedStatement.setInt(2, wishlist_id);
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -39,19 +39,19 @@ public class WishlistRepository {
         return 0;
     }
     // delete a wishlist
-    public void deleteWishlist(int id){
+    public void deleteWishlist(int wishlist_id){
         int updatedRows = 0;
         String SQlDeleteFromWishlist = "Delete from Wishlist where wishlist_id = ?";
-        String SQlDeleteFromJoinedTable ="DELETE FROM ProductWishlist where id = ?";
+        String SQlDeleteFromJoinedTable ="DELETE FROM ProductWishlist where wishlist_id = ?";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQlDeleteFromWishlist)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, wishlist_id);
             updatedRows = preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQlDeleteFromJoinedTable)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, wishlist_id);
             updatedRows = preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,9 +100,9 @@ public class WishlistRepository {
 
                 //adding product to productlist:
                 while(resultSet.next()){
-                    String productName = resultSet.getString("name");
-                    String productDesc = resultSet.getString("description");
-                    double productPrice = resultSet.getDouble("price");
+                    String productName = resultSet.getString("product_name");
+                    String productDesc = resultSet.getString("product_description");
+                    double productPrice = resultSet.getDouble("product_price");
                     productList.add(new Product(productID,productName,productDesc,productPrice));
                 }
             }//end of for each loop
@@ -164,5 +164,4 @@ public class WishlistRepository {
         }
         return results;
     }
-
 }
