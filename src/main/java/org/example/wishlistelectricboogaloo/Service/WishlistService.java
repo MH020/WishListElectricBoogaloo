@@ -29,7 +29,7 @@ public class WishlistService {
     public List<String> searchforWishlist(String search){
         return wishlistRepository.searchforWishlist(search);
     }
-    public List<Wishlist> getAllWishLists(int profileID) {
-        return wishlistRepository.getAllWishLists(profileID);
+    public List<Wishlist> getAllWishLists(int profile_id) {
+        return wishlistRepository.getAllWishLists(profile_id);
     }
 }

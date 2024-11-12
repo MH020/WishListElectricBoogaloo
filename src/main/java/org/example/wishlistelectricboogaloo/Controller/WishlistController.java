@@ -20,8 +20,8 @@ public class WishlistController {
     }
 
     @GetMapping("/view/{wishlistID}")
-    public String getWishlist(Model model, @PathVariable int profileID, @PathVariable int wishlistID){
-        model.addAttribute("wishlist", wishlistService.getWishlist(profileID, wishlistID));
+    public String getWishlist(Model model, @PathVariable int profile_id, @PathVariable int wishlist_id) {
+        model.addAttribute("wishlist", wishlistService.getWish(profile_id, wishlist_id));
         return "myWishlist";
     }
 
