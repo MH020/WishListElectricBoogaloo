@@ -61,14 +61,12 @@ public class ProfileController {
     }
 
     @PostMapping("/addMarket")
-    public String addMarket(@ModelAttribute int market_id){//@PathVariable int profile_id){ //RequestParam int market_id
+    public String addMarket(@RequestParam int market_id){//@PathVariable int profile_id){ //RequestParam int market_id
         Integer profile_id = (Integer) session.getAttribute("profile_id");
-        //int market_id = //profileService.getMarketByProfileID(profile_id); //get market info based on profileID
-
-        //System.out.println(profile_id2 + ", " + profile_id);
         profileService.addMarketToUser(profile_id, market_id);
         return "redirect:/homepage/" + profile_id;
     }
+
 
 
 
