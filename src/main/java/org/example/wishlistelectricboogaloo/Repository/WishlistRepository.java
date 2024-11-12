@@ -69,7 +69,6 @@ public class WishlistRepository {
             //preparedStatement.setInt(1, profileId);
             ResultSet resultset = preparedStatement.executeQuery();
             while(resultset.next()) {
-
                Wishlist wishlist = new Wishlist(profile_id);
                allWishList.add(wishlist);
             }

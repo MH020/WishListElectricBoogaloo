@@ -27,10 +27,8 @@ public class ProfileController {
     @GetMapping("/myHomepage")
     public String getMyHomepage(Model model, @PathVariable int profileID) {
         model.addAttribute("wishlist", new Wishlist());
-
         model.addAttribute("profile_id", session.getAttribute("profile_id"));
-
-        //model.addAttribute("wishlist_overview", wishlistService.getAllWishLists(profileID));//jeg ved ikke hvad det er.
+        model.addAttribute("wishlist_overview", wishlistService.getAllWishLists(profileID));//jeg ved ikke hvad det er.
         return "myHomepage";
 
     }

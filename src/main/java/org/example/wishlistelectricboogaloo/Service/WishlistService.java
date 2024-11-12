@@ -28,6 +28,8 @@ public class WishlistService {
     }
     public List<String> searchforWishlist(String search){
         return wishlistRepository.searchforWishlist(search);
-
+    }
+    public List<Wishlist> getAllWishLists(int profileID) {
+        return wishlistRepository.getAllWishLists(profileID);
     }
 }

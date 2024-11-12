@@ -10,22 +10,17 @@ public class Wishlist {
 
    public Wishlist() {
    }
-    public Wishlist(profile_id) {
-    }
-   public int getId() {
-      return id;
-
+    public Wishlist(int profile_id) {
+   this.profile_id = profile_id;
    }
-    public void setId(int id) {
-        this.id = id;
 
-    }
+
     public int getProfileId() {
         return profile_id;
 
     }
-    public void setProfileId(int profileId) {
-       this.profile_id = profileId;
+    public void setProfileId(int profile_id) {
+       this.profile_id = profile_id;
     }
     public String getName() {
        return name;
