@@ -59,10 +59,11 @@ public class ProfileController {
     }
 
     @PostMapping("/addMarket")
-    public String addMarket(@RequestParam int market_id){
-        int profile_id = (int) session.getAttribute("profile_id");
-        profileService.addMarketToUser(profile_id, market_id);
-        return "redirect:/homepage/" + profile_id;
+    public String addMarket(@RequestParam int marketId,@PathVariable int profileID){
+        Integer ID = (Integer) session.getAttribute("id");
+        profileService.addMarketToUser(ID, marketId);
+        return "redirect:/homepage/" + profileID;
+    }
     }
 
 
