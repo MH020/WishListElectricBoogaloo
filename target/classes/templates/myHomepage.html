@@ -8,7 +8,7 @@
 
 <body>
 <header>
-    <h1 class="logo"><span>Local</span>Wish.</h1>
+    <h1 class="logo"><span>Local</span>Wish<span>.</span></h1>
     <form class="logo" method="get" th:action="@{/login}" style="display:inline;">
         <button type="submit">Log out</button>
     </form>
@@ -28,9 +28,9 @@
 
     <p> Create new wishlist</p>
     <form method="post" th:action="@{/homepage/{profileID}/addWishList (profileID = 1)}" th:object="${wishlist}" style="display:inline;">
-        <label for="option1">Name:</label>
+        <label for="option1">Name: </label>
         <input type="text" id="option1" name="name" th:value="${wishlist.name}"> <br>
-        <button type="submit">submit</button>
+        <button type="submit">Create</button>
     </form>
 
     <table>
@@ -49,10 +49,5 @@
         </tr>
     </table>
 
-    <form class="navbar" method="get" th:action="@{/login}" style="display:inline;">
-        <button type="submit">Log out</button>
-    </form>
-
-    <p> slet profil</p>
 </body>
 </html>

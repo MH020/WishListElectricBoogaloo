@@ -1,5 +1,5 @@
 :root{
-    --green: #8bca84;
+    --green: #568203;
 }
 
 *{
@@ -44,7 +44,7 @@ p {
 }
 
 .large-text {
-    font-size: 1.5em; /* Adjust the size as needed */
+    font-size: 1.5em; /*adjust the size as needed*/
 }
 
 header{
@@ -61,4 +61,23 @@ header{
 
 header .logo span{
     color:var(--green);
+}
+
+input[type="text"], input[type="password"], textarea {
+    font-size: 1.2em; /*font size*/
+    padding: 0.1em; /*padding*/
+    width: 50%; /*width on box*/
+    box-sizing: border-box; /*ensure padding is included in the width*/
+}
+
+.image-row{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.image-row img{
+    margin: 0 10px;
+    max-width: 700px; /*width of pictures*/
+    height: auto;
 }
