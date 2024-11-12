@@ -52,6 +52,7 @@ public class ProductRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
+                System.out.println("market_id: " + resultSet.getInt("market_id"));
                 return resultSet.getInt("market_id");
             }
         } catch (Exception e) {
@@ -66,9 +67,9 @@ public class ProductRepository {
         try (PreparedStatement preparedStatement = conn.prepareStatement(Sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int marketId = resultSet.getInt("market_id");
+                int market_id = resultSet.getInt("market_id");
                 String city = resultSet.getString("market_city");
-                markets.add(new Market(marketId, city));
+                markets.add(new Market(market_id, city));
             }
         } catch (Exception e) {
             e.printStackTrace();

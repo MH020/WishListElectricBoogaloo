@@ -36,12 +36,13 @@ public class ProfileController {
     @GetMapping("/market")
     public String getMarket(Model model) {
         Integer profile_id = (Integer) session.getAttribute("profile_id");
-        int market = profileService.getMarketByProfileID(profile_id); //get market info based on profileID
+        int market_id = profileService.getMarketByProfileID(profile_id); //get market info based on profileID
         //if market is 0, redirect to allMarkets so you can choose a market
-        if (market == 0) {
+        if (market_id == 0) {
             return "redirect:/homepage/" + profile_id + "/allMarkets";
         }
-        List<Product> products = profileService.getAllProducts(market); //get all products from market
+
+        List<Product> products = profileService.getAllProducts(market_id); //get all products from market
         //List(Wishlist) wishlists = wishlistService.getWishListByProfileID(profileID);
         model.addAttribute("products", products); //add products to model?
         model.addAttribute("profile_id", profile_id);
@@ -55,16 +56,24 @@ public class ProfileController {
         List<Market> markets = profileService.getAllMarkets();
         model.addAttribute("allMarkets", markets);
         model.addAttribute("profile_id", profile_id);
+        model.addAttribute("market_id", -1);
         return "allMarkets";
     }
 
     @PostMapping("/addMarket")
-    public String addMarket(@RequestParam int marketId,@PathVariable int profileID){
-        Integer ID = (Integer) session.getAttribute("id");
-        profileService.addMarketToUser(ID, marketId);
-        return "redirect:/homepage/" + profileID;
+    public String addMarket(@ModelAttribute int market_id){//@PathVariable int profile_id){ //RequestParam int market_id
+        Integer profile_id = (Integer) session.getAttribute("profile_id");
+        //int market_id = //profileService.getMarketByProfileID(profile_id); //get market info based on profileID
+
+        //System.out.println(profile_id2 + ", " + profile_id);
+        profileService.addMarketToUser(profile_id, market_id);
+        return "redirect:/homepage/" + profile_id;
     }
-    }
+
+
+
+
+
 
 
     @PostMapping("/logout")

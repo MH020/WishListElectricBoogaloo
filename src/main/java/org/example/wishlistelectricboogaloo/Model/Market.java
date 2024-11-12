@@ -2,7 +2,7 @@ package org.example.wishlistelectricboogaloo.Model;
 
 public class Market {
     private int market_id;
-    private String city;
+    private String market_city;
 
     //Getters
     public int getMarketId() {
@@ -10,7 +10,7 @@ public class Market {
     }
 
     public String getCity() {
-        return city;
+        return market_city;
     }
     //Setters
     public void setMarketId(int marketId) {
@@ -18,12 +18,12 @@ public class Market {
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.market_city = city;
     }
 
     //Constructor
     public Market(int marketId, String city) {
         this.market_id = marketId;
-        this.city = city;
+        this.market_city = city;
     }
 }
