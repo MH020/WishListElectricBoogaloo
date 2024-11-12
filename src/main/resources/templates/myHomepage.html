@@ -14,39 +14,41 @@
     </form>
 </header>
 
-    <h1> My homepage</h1>
+<h1>My homepage</h1>
 
-    <form method="get" th:action="@{/login}" style="display:inline;">
-        <button type="submit">log ud</button>
-    </form>
+<form method="get" th:action="@{/login}" style="display:inline;">
+    <button type="submit">log ud</button>
+</form>
 
-    <form method="get" th:action="@{/homepage/{profileID}/market (profileID = ${profile_id})}" style="display:inline;">
+<form method="get" th:action="@{/homepage/{profileID}/market (profileID = ${profile_id})}" style="display:inline;">
     <button type="submit">Market</button>
-    </form>
+</form>
 
-    <p> Create new wishlist</p>
-    <form method="post" th:action="@{/homepage/{profileID}/addWishList}" th:object="${wishlist}" style="display:inline;">
-        <label for="option1">Name: </label>
-        <input type="text" id="option1" name="name" th:value="${wishlist.getName()}"/>
-        <button type="submit">Submit</button>
-    </form>
+<p>Create new wishlist</p>
+<form method="post" th:action="@{/homepage/{profileID}/addWishList}" th:object="${wishlist}" style="display:inline;">
+    <label for="option1">Name: </label>
+    <input type="text" id="option1" name="name" th:value="${wishlist.name}"/>
+    <button type="submit">Submit</button>
+</form>
 
-    <table>
-        <tr>
-            <th>My Wishlists:</th>
-        </tr>
+<table>
+    <tr>
+        <th>My Wishlists:</th>
+    </tr>
 
-        <tr>
-            <td> navn </td>
-            <td> link </td>
-        </tr>
+    <tr>
+        <td>navn</td>
+        <td>link</td>
+    </tr>
 
-        <tr th:each="wishlist : ${wishlist_overview}">
-            <td th:text="${wishlist.getName()}"/>
-            <td th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID} (profile_id= ${profile_id}, wishlist_id = ${wishlist.getWishlist_id()} )}"/>
-        </tr>
+    <tr th:each="wishlist : ${wishlist_overview}">
+        <td th:text="${wishlist.getName()}"></td>
+        <td>
+            <a th:href="@{/homepage/{profileID}/wishlist/view/{wishlistID} (profileID= ${profile_id}, wishlistID = ${wishlist.wishlist_id})}">View</a>
+        </td>
+    </tr>
 
-    </table>
+</table>
 
 </body>
 </html>

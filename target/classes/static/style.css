@@ -34,6 +34,15 @@ td, th {
     border: 1px solid darkslategray;
 }
 
+/* taken from mozilla html and css tutorial: */
+tr:nth-child(even) td {
+    background-color: rgb(250,250,250);
+}
+
+tr:nth-child(odd) td {
+    background-color: rgb(245,245,245);
+}
+
 table-header {
     text-align: center;
     font-size: x-large;
@@ -77,7 +86,7 @@ input[type="text"], input[type="password"], textarea {
 }
 
 .image-row img{
-    margin: 0 10px;
+    margin: 0 5px;
     max-width: 700px; /*width of pictures*/
     height: auto;
 }

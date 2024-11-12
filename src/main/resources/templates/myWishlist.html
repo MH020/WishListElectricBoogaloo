@@ -12,36 +12,30 @@
         <button type="submit">Log out</button>
     </form>
 </header>
-    <h1> My wishlist</h1>
-    <p> endpoint: @RequestMapping(“/homepage/{profileID}/wishlist”) </br>
-        @GetMapping(“/view/{wishlistID}”)
-    </p>
+<h1> My wishlist</h1>
+<p> endpoint: @RequestMapping("/homepage/{profileID}/wishlist") 
+    @GetMapping("/view/{wishlistID}")
+</p>
 
+<a th:href="@{/homepage/{profileID}(profileID = ${profileID})}">Homepage </a>
 
-    <a th:href="@{/homepage/{profileID}(profileID = ${profileID})}">Homepage </br></a>
+<table>
+    <tr>
+        <th class="table-header" colspan="3" th:text="${wishlist.name}"> </th>
+    </tr>
 
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Description</th>
+    </tr>
 
-    <table>
-        <tr>
-            <th class=table-header colspan="3" th:text ="${wishlist.getName()}"> </th>
-        </tr>
-
-        <tr>
-            <th >Product</th>
-            <th >Price</th>
-            <th >Description</th>
-        </tr>
-
-
-        <tr th:each="product : ${wishlist.getProducts()}">
-            <td th:text="${product.getProductName()}"></td>
-            <td th:text="${product.getProductPrice()}"></td>
-            <td th:text="${product.getProductDescription()}"></td>
-        </tr>
-    </table>
-
-    </br>
-    </br>
-    <p>evt kan vi have pile til ens andre ønskelister nede i bunden, så man kan bladre imellem dem.</p>
+    <tr th:each="product : ${wishlist.products}">
+        <td th:text="${product.productName}"></td>
+        <td th:text="${product.productPrice}"></td>
+        <td th:text="${product.productDescription}"></td>
+    </tr>
+</table>
+<p>evt kan vi have pile til ens andre ønskelister nede i bunden, så man kan bladre imellem dem.</p>
 </body>
 </html>
