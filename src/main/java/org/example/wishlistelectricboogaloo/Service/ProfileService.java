@@ -1,5 +1,7 @@
 package org.example.wishlistelectricboogaloo.Service;
 
+import org.example.wishlistelectricboogaloo.Encrypter;
+import org.example.wishlistelectricboogaloo.Model.Market;
 import org.example.wishlistelectricboogaloo.Model.Product;
 import org.example.wishlistelectricboogaloo.Model.Profile;
 import org.example.wishlistelectricboogaloo.Repository.ProductRepository;
@@ -18,6 +20,11 @@ import java.util.List;
             this.productRepository = productRepository;
         }
         public void saveUser(Profile profile) {
+            Encrypter encrypter = new Encrypter();
+            String encryptedPassword = encrypter.encrypt(profile.getPassword());
+            String encryptedUsername = encrypter.encrypt(profile.getUsername());
+            profile.setPassword(encryptedPassword);
+            profile.setUsername(encryptedUsername);
             profileRepository.saveUser(profile);
         }
 
@@ -29,8 +36,19 @@ import java.util.List;
         public int getMarketByProfileID(int profileId) {
             return productRepository.getMarketByProfileID(profileId);
         }
+        //hjemmelavet metode
+        public List <Market> getAllMarkets() {
+            return productRepository.getAllMarkets();
+        }
+        //also this one er hjemmelavet
+        public void addMarketToUser(int profile_id, int market_id) {
+            productRepository.addMarketToUser(profile_id, market_id);
+        }
 
         public Profile authenticateProfile (String username, String password) {
-            return profileRepository.authenticateProfile(username, password);
+            Encrypter encrypter = new Encrypter();
+            String encryptedPassword = encrypter.encrypt(password);
+            String encryptedUsername = encrypter.encrypt(username);
+            return profileRepository.authenticateProfile(encryptedUsername, encryptedPassword);
         }
     }

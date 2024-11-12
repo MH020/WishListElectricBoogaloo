@@ -1,10 +1,11 @@
 package org.example.wishlistelectricboogaloo.Controller;
 
-import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/homepage/{profileID}/wishlist")
@@ -20,7 +21,8 @@ public class WishlistController {
     }
 
     @PostMapping("/delete/{wishlistID}")
-    public String deleteWishlist(@PathVariable int wishlistID){
+    public String deleteWishlist(@PathVariable int wishlist_id){
+
         wishlistService.deleteWishlist(wishlist_id);
         return "redirect: myHomepage";
     }
@@ -31,10 +33,16 @@ public class WishlistController {
     }
 
     @PostMapping("/update/{wishlistID}/addWish")
-
-    public String updateWishlistAddProduct(@PathVariable int wishlistID,@RequestParam int productID){
-        wishlistService.updateWishlistAddProduct(productID, wishlistID);
+    public String updateWishlistAddProduct(@PathVariable int wishlist_id,@RequestParam int product_id){
+        wishlistService.updateWishlistAddProduct(product_id, wishlist_id);
 
         return "redirect: market";
+    }
+    @GetMapping("/searchWishlist")
+    public String searchWishlist(@RequestParam String search, Model model){
+        List<String> wishlistsSearchResults  = wishlistService.searchforWishlist(search);
+        model.addAttribute("wishlistsSearchResults", wishlistsSearchResults);
+
+        return "searchResult";
     }
 }

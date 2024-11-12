@@ -16,13 +16,8 @@ public class WishlistService {
     }
 
     // Create a new wishlist
-    public int createWishlist(Wishlist wishlist,int profile_id ) {
-        return wishlistRepository.createWishlist(wishlist,profile_id);
-    }
-    //Get all wishlists
-
-    public List<Wishlist> getAllWishLists(int profile_id) {
-        return wishlistRepository.getAllWishLists(profile_id);
+    public int addWishlist(Wishlist wishlist,int wishlist_id ) {
+        return wishlistRepository.addWishlist(wishlist,wishlist_id);
     }
     //delete a wishlist
     public void deleteWishlist(int wishlist_id) {
@@ -30,5 +25,9 @@ public class WishlistService {
     }
     public boolean updateWishlistAddProduct(int product_id, int wishlist_id) {
         return wishlistRepository.updateWishlistAddProduct(product_id,wishlist_id);
+    }
+    public List<String> searchforWishlist(String search){
+        return wishlistRepository.searchforWishlist(search);
+
     }
 }

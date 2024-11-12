@@ -1,5 +1,6 @@
 package org.example.wishlistelectricboogaloo.Controller;
 import jakarta.servlet.http.HttpSession;
+import org.example.wishlistelectricboogaloo.Model.Market;
 import org.example.wishlistelectricboogaloo.Model.Product;
 import org.example.wishlistelectricboogaloo.Model.Wishlist;
 import org.example.wishlistelectricboogaloo.Service.ProfileService;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/homepage/{profileID}")
+@RequestMapping("/homepage/{profile_id}")
 public class ProfileController {
     private final WishlistService wishlistService;
     private final ProfileService profileService;
@@ -26,38 +27,62 @@ public class ProfileController {
     @GetMapping("/myHomepage")
     public String getMyHomepage(Model model, @PathVariable int profileID) {
         model.addAttribute("wishlist", new Wishlist());
-        model.addAttribute("wishlist_overview", wishlistService.getAllWishLists(profileID));
+
+        model.addAttribute("profile_id", session.getAttribute("profile_id"));
+
+        //model.addAttribute("wishlist_overview", wishlistService.getAllWishLists(profileID));//jeg ved ikke hvad det er.
         return "myHomepage";
 
     }
 
     @GetMapping("/market")
     public String getMarket(Model model) {
-        Integer profileID = (Integer) session.getAttribute("id");
-        int market = profileService.getMarketByProfileID(profileID); //get market info based on profileID
+        Integer profile_id = (Integer) session.getAttribute("profile_id");
+        int market = profileService.getMarketByProfileID(profile_id); //get market info based on profileID
+        //if market is 0, redirect to allMarkets so you can choose a market
+        if (market == 0) {
+            return "redirect:/homepage/" + profile_id + "/allMarkets";
+        }
         List<Product> products = profileService.getAllProducts(market); //get all products from market
         //List(Wishlist) wishlists = wishlistService.getWishListByProfileID(profileID);
         model.addAttribute("products", products); //add products to model?
-        model.addAttribute("profileID", profileID);
+        model.addAttribute("profile_id", profile_id);
         //model.addAttribute("wishlists", wishlists); //add wishlists to model?
         return "market";
+    }
+
+    @GetMapping("/allMarkets")
+    public String getAllMarkets(Model model){
+        Integer profile_id = (Integer) session.getAttribute("profile_id");
+        List<Market> markets = profileService.getAllMarkets();
+        model.addAttribute("allMarkets", markets);
+        model.addAttribute("profile_id", profile_id);
+        return "allMarkets";
+    }
+
+    @PostMapping("/addMarket")
+    public String addMarket(@RequestParam int market_id){
+        int profile_id = (int) session.getAttribute("profile_id");
+        profileService.addMarketToUser(profile_id, market_id);
+        return "redirect:/homepage/" + profile_id;
     }
 
     @PostMapping("/logout")
     public String postLogout(HttpSession session){
         session.invalidate();
-        return "redirect: loginPage";
+        return "redirect: /login";
     }
 
     @PostMapping("/deleteAccount")
     public String postDeleteAccount(){
-        return "redirect: loginPage";
+        return "redirect: /login";
     }
 
     @PostMapping("/addWishList")
     public String addWishList(Wishlist wishlist) {
-        Integer id = (Integer) session.getAttribute("id");
-        wishlistService.createWishlist(wishlist,id);
-        return "redirect:/homepage/" + id;
+        int profile_id = (int) session.getAttribute("profile_id");
+        wishlistService.addWishlist(wishlist,profile_id);
+        return "redirect:/homepage/" + profile_id;
     }
+
 }

@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Profile (
 -- Table `Market`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Market (
-                                      market_id INT PRIMARY KEY,
+                                      market_id INT PRIMARY KEY AUTO_INCREMENT,
                                       market_city VARCHAR(45) NOT NULL,
                                       UNIQUE (market_city)
 );
@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS Market (
 -- Table `ProfileMarket`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS ProfileMarket (
-                                             ProfileMarket_id VARCHAR(45) PRIMARY KEY,
                                              profile_id INT NOT NULL,
                                              market_id INT NOT NULL,
                                              FOREIGN KEY (profile_id) REFERENCES Profile(profile_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -48,7 +47,7 @@ CREATE TABLE IF NOT EXISTS Product (
 -- Table `Wishlist`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Wishlist (
-                                        wishlist_id INT PRIMARY KEY,
+                                        wishlist_id INT PRIMARY KEY AUTO_INCREMENT,
                                         wishlist_name VARCHAR(45) NOT NULL,
                                         profile_id INT NOT NULL,
                                         FOREIGN KEY (profile_id) REFERENCES Profile(profile_id) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -58,7 +57,6 @@ CREATE TABLE IF NOT EXISTS Wishlist (
 -- Table `ProductWishlist`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS ProductWishlist (
-                                               ProductWishlist_id VARCHAR(45) PRIMARY KEY,
                                                product_id INT NOT NULL,
                                                wishlist_id INT NOT NULL,
                                                FOREIGN KEY (wishlist_id) REFERENCES Wishlist(wishlist_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -72,8 +70,9 @@ CREATE TABLE IF NOT EXISTS ProductWishlist (
 INSERT INTO Profile (username, password, profile_email, profile_phone)
 VALUES
     ('john_doe', 'password123', 'john.doe@example.com', '555-0101'),
-    ('jane_smith', 'securepass', 'jane.smith@example.com', '555-0102'),
+    ('test','test', 'jane.smith@example.com', '555-0102'),
     ('alice_jones', 'alicepass', 'alice.jones@example.com', '555-0103');
+
 
 -- Insert data into Market table
 INSERT INTO Market (market_id, market_city)
@@ -83,11 +82,11 @@ VALUES
     (3, 'Chicago');
 
 -- Insert data into ProfileMarket table
-INSERT INTO ProfileMarket (ProfileMarket_id, profile_id, market_id)
+INSERT INTO ProfileMarket (profile_id, market_id)
 VALUES
-    ('PM1', 1, 1),  -- John Doe associated with New York market
-    ('PM2', 2, 2),  -- Jane Smith associated with Los Angeles market
-    ('PM3', 3, 3);  -- Alice Jones associated with Chicago market
+    ( 1, 1),  -- John Doe associated with New York market
+    ( 2, 2),  -- Jane Smith associated with Los Angeles market
+    ( 3, 3);  -- Alice Jones associated with Chicago market
 
 -- Insert data into Product table
 INSERT INTO Product (product_name, product_description, product_price, market_id)
@@ -104,8 +103,8 @@ VALUES
     (3, 'Alice''s Wishlist', 3);  -- Wishlist for Alice Jones (escaped single quote)
 
 -- Insert data into ProductWishlist table
-INSERT INTO ProductWishlist (ProductWishlist_id, product_id, wishlist_id)
+INSERT INTO ProductWishlist (product_id, wishlist_id)
 VALUES
-    ('PW1', 1, 1),  -- Laptop in John's Wishlist
-    ('PW2', 2, 2),  -- Smartphone in Jane's Wishlist
-    ('PW3', 3, 3);  -- Headphones in Alice's Wishlist
+    ( 1, 1),  -- Laptop in John's Wishlist
+    ( 2, 2),  -- Smartphone in Jane's Wishlist
+    ( 3, 3);  -- Headphones in Alice's Wishlist

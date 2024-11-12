@@ -41,15 +41,27 @@ public class ProfileRepository {
     public void updateUser(){
     }
     //delete Method
-    public void deleteUser() {
+    public void deleteUser(int profile_id) {
+        String SQL = "Select from wishlist where profile_id = ?";
+        String SQL2 = "DELETE  FROM profile WHERE profile_id = ?";
+        String SQL3 = "DELETE  FROM wishlist WHERE profile_id = ?";
+        String SQL4 = "DELETE  FROM ProfileMarket WHERE profile_id = ?";
+        String SQL5 = "DELETE  FROM ProductWishlist WHERE wishlist_id = ?";
+        try (PreparedStatement preparedStatement = conn.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, profile_id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
+
     //authenticate method
-    public Profile authenticateProfile(String Username, String Password) {
+    public Profile authenticateProfile(String username, String password) {
         String SQLcheck = "SELECT * FROM profile WHERE username = ? AND password = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQLcheck, PreparedStatement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, Username);
-            preparedStatement.setString(2, Password);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
 
             //sees if there is a resultSet in the database that matches the username and password entered by the user and returns true if there is
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -71,13 +83,6 @@ public class ProfileRepository {
         return null;
     }
 
-    public int getUserId(HttpSession session) {
-        Profile user = (Profile) session.getAttribute("user");
-        if (user != null) {
-            return user.getId();
-        }
-        return -1;
-    }
 
 
 }
