@@ -72,7 +72,7 @@ public class WishlistRepository {
 
             while(resultSet.next()){
                 wishlist.setId(resultSet.getInt("wishlist_id"));
-                wishlist.setName(resultSet.getString("name"));
+                wishlist.setName(resultSet.getString("wishlist_name"));
                 wishlist.setProfileId(resultSet.getInt("profile_id"));
 
                 wishlist.setProducts(getAllProductsBelongingToWishlist(wishlistID));
