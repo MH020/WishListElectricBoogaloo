@@ -1,8 +1,5 @@
 package org.example.wishlistelectricboogaloo.Controller;
-
 import jakarta.servlet.http.HttpSession;
-import org.example.wishlistelectricboogaloo.Model.Wishlist;
-
 import org.example.wishlistelectricboogaloo.Service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +11,16 @@ import java.util.List;
 @RequestMapping("/homepage/{profileID}/wishlist")
 public class WishlistController {
     private final WishlistService wishlistService;
-    public WishlistController(WishlistService wishlistService) {
+    private final HttpSession session;
 
+    public WishlistController(WishlistService wishlistService, HttpSession session) {
+        this.session = session;
         this.wishlistService = wishlistService;
     }
 
     @GetMapping("/view/{wishlistID}")
-    public String getWishlist(Model model, @PathVariable int profile_id, @PathVariable int wishlist_id) {
+    public String getWishlist(Model model, @PathVariable("wishlistID") int wishlist_id) {
+        Integer profile_id = (Integer) session.getAttribute("profile_id");
         model.addAttribute("wishlist", wishlistService.getWishlist(profile_id, wishlist_id));
         return "myWishlist";
     }
