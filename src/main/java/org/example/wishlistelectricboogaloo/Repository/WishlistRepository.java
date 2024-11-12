@@ -19,14 +19,14 @@ public class WishlistRepository {
     }
 
     //create a wishlist
-    public int addWishlist(Wishlist wishlist,int wishlist_id) {
-        String SQLInsertWishlist = "insert into wishlist (name,profile_id) values(?,?)";
+    public int addWishlist(Wishlist wishlist,int profile_id) {
+        String SQLInsertWishlist = "insert into wishlist (wishlist_name,profile_id) values(?,?)";
 
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLInsertWishlist, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, wishlist.getName());
-            preparedStatement.setInt(2, wishlist_id);
+            preparedStatement.setInt(2, profile_id);
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -75,8 +75,9 @@ public class WishlistRepository {
             e.printStackTrace();
         }
         return allWishList ;
-//Der skal laves en HTML til AllWishlists metode
+        //Der skal laves en HTML til AllWishlists metode
     }
+
     public Wishlist getWishlist(int profileID, int wishlistID){
         String SQLGetwishlist = "SELECT * FROM wishlist WHERE profile_id = ? AND wishlist_id = ?";
         Wishlist wishlist = new Wishlist();
@@ -151,7 +152,7 @@ public class WishlistRepository {
     }
     public boolean updateWishlistAddProduct(int product_id, int wishlist_id) {
 
-        String sql = "INSERT INTO Joined_Wishlist_And_Products (wishlist_id, product_id) VALUES (?, ?)";
+        String sql = "INSERT INTO wishlistProduct (wishlist_id, product_id) VALUES (?, ?)";
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             preparedStatement.setInt(1, wishlist_id);
             preparedStatement.setInt(2, product_id);
@@ -165,14 +166,14 @@ public class WishlistRepository {
 
     public List<String> searchforWishlist(String search){
         List<String> results = new ArrayList<>();
-        String sql = "SELECT FROM wishlist WHERE name LIKE = ?";
+        String sql = "SELECT FROM wishlist WHERE wishlist_name LIKE = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             // the % is a wildcard that allows us to search for a string that contains the search string
             preparedStatement.setString(1,"%" + search+ "%");
             //resultset is the result of the query
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    results.add(resultSet.getString("name"));
+                    results.add(resultSet.getString("wishlist_name"));
                 }
             }
         } catch (Exception e) {

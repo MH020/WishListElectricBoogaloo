@@ -56,7 +56,7 @@
                     <!-- Dropdown to select a wishlist -->
                     <select name="wishlistID" required>
                         <option value="" disabled selected>Select wishlist</option>
-                        <option th:each="wishlist : ${wishlists}" th:value="${wishlist.id}" th:text="${wishlist.name}"></option>
+                        <option th:each="wishlist : ${wishlists}" th:value="${wishlist.getWishlist_id()}" th:text="${wishlist.getName()}"></option>
                     </select>
 
                     <button type="submit">Add to wishlist</button>

@@ -57,7 +57,7 @@ CREATE TABLE ProductWishlist (
 -- Insert test data for Profile
 INSERT INTO Profile (username, password, profile_email, profile_phone) VALUES
                                                                            ('john_doe', 'password123', 'john@example.com', '1234567890'),
-                                                                           ('jane_smith', 'password456', 'jane@example.com', '0987654321');
+                                                                           ('98f6bcd4621d373cade4', '98f6bcd4621d373cade4', 'test@mail.com', '12341234');
 
 
 -- Insert test data for Market

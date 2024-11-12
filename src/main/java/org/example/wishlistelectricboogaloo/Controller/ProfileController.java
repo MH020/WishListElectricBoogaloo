@@ -26,11 +26,10 @@ public class ProfileController {
     // this one
     @GetMapping("")
     public String getMyHomepage(Model model, @PathVariable int profile_id) {
-        model.addAttribute("wishlist", new Wishlist());
+        model.addAttribute("wishlist", new Wishlist()); //making a new wishlist with thymeleaf forms
         model.addAttribute("profile_id", session.getAttribute("profile_id"));
-        model.addAttribute("wishlist_overview", wishlistService.getAllWishLists(profile_id));//jeg ved ikke hvad det er.
+        model.addAttribute("wishlist_overview", wishlistService.getAllWishLists(profile_id));//get all wishlists.
         return "myHomepage";
-
     }
 
     @GetMapping("/market")
@@ -46,7 +45,7 @@ public class ProfileController {
         //List(Wishlist) wishlists = wishlistService.getWishListByProfileID(profileID);
         model.addAttribute("products", products); //add products to model?
         model.addAttribute("profile_id", profile_id);
-        //model.addAttribute("wishlists", wishlists); //add wishlists to model?
+        model.addAttribute("wishlists", wishlistService.getAllWishLists(profile_id)); //add wishlists to model?
         return "market";
     }
 
@@ -67,13 +66,6 @@ public class ProfileController {
         return "redirect:/homepage/" + profile_id;
     }
 
-
-
-
-
-
-
-
     @PostMapping("/logout")
     public String postLogout(HttpSession session){
         session.invalidate();
@@ -86,9 +78,10 @@ public class ProfileController {
     }
 
     @PostMapping("/addWishList")
-    public String addWishList(Wishlist wishlist) {
+    public String addWishList(@ModelAttribute Wishlist wishlist){
         int profile_id = (int) session.getAttribute("profile_id");
         wishlistService.addWishlist(wishlist,profile_id);
+
         return "redirect:/homepage/" + profile_id;
     }
 

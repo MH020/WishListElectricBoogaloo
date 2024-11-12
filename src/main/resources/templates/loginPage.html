@@ -13,13 +13,12 @@
 
 <h1>Login</h1>
 
-<form th:action="@{/login}" method="post" th:object="${user}"> <br>
-
+<form th:action="@{/login}" method="post" th:object="${profile}"> <br>
     <label class="large-text" for="username">Username: </label>
-    <input type="text" id="username" name="username" th:value="${user.username}" required><br>
+    <input type="text" id="username" name="username" th:value="${profile.getUsername()}" required><br>
 
     <label class="large-text" for="password">Password: </label>
-    <input type="text" id="password" name="password" th:value="${user.password}" required><br>
+    <input type="text" id="password" name="password" th:value="${profile.getPassword()}" required><br>
 
     <button type="submit">Login</button> <br>
 </form>

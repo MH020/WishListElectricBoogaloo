@@ -20,7 +20,7 @@ public class LoginController {
 
     @GetMapping("")
     public String getLoginPage(Model model){
-        model.addAttribute("user", new Profile());
+        model.addAttribute("profile", new Profile());
         return "loginPage";
     }
 
@@ -30,12 +30,12 @@ public class LoginController {
         try {
             Profile realUser = ProfileService.authenticateProfile(profile.getUsername(), profile.getPassword());
 
+            if (realUser != null) {
+                session.setAttribute("profile_id",realUser.getId());
+                System.out.println("profile_id: " + session.getAttribute("profile_id"));
+                return "redirect:/homepage/" + realUser.getId();
+            }
 
-        if (realUser != null) {
-            session.setAttribute("profile_id",realUser.getId());
-            System.out.println("profile_id: " + session.getAttribute("profile_id"));
-            return "redirect:/homepage/" + realUser.getId();
-        }
         }catch(Exception e){
             System.out.println("fejl: " + e);
         }
