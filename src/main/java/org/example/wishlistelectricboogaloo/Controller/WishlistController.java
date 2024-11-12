@@ -40,9 +40,7 @@ public class WishlistController {
     @PostMapping("/update/{wishlistID}/addWish")
     public String updateWishlistAddProduct(@PathVariable int wishlist_id,@RequestParam int product_id){
         wishlistService.updateWishlistAddProduct(product_id, wishlist_id);
-
         return "redirect: market";
-
     }
 
     @GetMapping("/searchbar")

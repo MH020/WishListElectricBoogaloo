@@ -23,8 +23,8 @@ public class ProfileController {
         this.profileService = profileService;
         this.session = session;
     }
-
-    @GetMapping("/myHomepage")
+    // this one
+    @GetMapping("")
     public String getMyHomepage(Model model, @PathVariable int profile_id) {
         model.addAttribute("wishlist", new Wishlist());
         model.addAttribute("profile_id", session.getAttribute("profile_id"));

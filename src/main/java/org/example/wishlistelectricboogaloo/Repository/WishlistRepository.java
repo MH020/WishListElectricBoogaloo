@@ -64,7 +64,7 @@ public class WishlistRepository {
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLReadFromWishlist);
-            //preparedStatement.setInt(1, profileId);
+            preparedStatement.setInt(1, profile_id);
             ResultSet resultset = preparedStatement.executeQuery();
             while(resultset.next()) {
                Wishlist wishlist = new Wishlist(profile_id);
