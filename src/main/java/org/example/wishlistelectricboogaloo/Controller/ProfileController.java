@@ -40,7 +40,6 @@ public class ProfileController {
         if (market_id == 0) {
             return "redirect:/homepage/" + profile_id + "/allMarkets";
         }
-
         List<Product> products = profileService.getAllProducts(market_id); //get all products from market
         //List(Wishlist) wishlists = wishlistService.getWishListByProfileID(profileID);
         model.addAttribute("products", products); //add products to model?

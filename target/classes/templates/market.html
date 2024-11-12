@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <title>Market</title>
@@ -14,57 +13,48 @@
         <button type="submit">Log out</button>
     </form>
 </header>
-    <h1>My market</h1>
 
-    <!--<p> endpoint: /homepage/{profileID}/market</p>
-    <p> Bynavn</p>
-    <ul>
-        <li><a href="myHomepage.html">My homepage</a></li>
+<h1>My market</h1>
 
-        <th:block th:each="product : ${products}">
-            <li>
-                <strong th:text="${product.productName}">Product Name</strong>:
-                <span th:text="${product.productDescription}">Product Description</span> -
-                $<span th:text="${product.productPrice}">Product Price</span>
-            </li>
-        </th:block>
+<table>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Product Description</th>
+        <th>Action</th>
+    </tr>
+    </thead>
 
-    </ul>
-    <p> liste med ønsker/produkter. Dropdown menu med ønskelister, så man kan tilføje ønsket.</p>
-        -->
+    <tbody>
+    <tr th:if="${#lists.isEmpty(products)}">
+        <td colspan="4">No products available.</td>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.productName}"></td>
+        <td th:text="${product.productPrice}"></td>
+        <td th:text="${product.productDescription}"></td>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Product description</th>
-        </tr>
-        </thead>
+        <td>
+            <!-- Form to add product to wishlist -->
+            <form method="post" th:action="@{/homepage/{profileID}/wishlist/update/addWish}">
+                <input type="hidden" name="product_id" th:value="${product.productId}" />
 
-        <tbody>
-        <p th:if="${#lists.isEmpty(products)}">No products available.</p>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.productName}"></td>
-            <td th:text="${product.productPrice}"></td>
-            <td th:text="${product.productDescription}"></td>
+                <!-- Label and Dropdown for selecting a wishlist -->
+                <label for="wishlistSelect">Choose wishlist:</label>
+                <select name="wishlist_id" id="wishlistSelect" required>
+                    <option value="" disabled selected>Select wishlist</option>
+                    <option th:each="wishlist : ${wishlists}"
+                            th:value="${wishlist.wishlist_id}"
+                            th:text="${wishlist.name}"></option>
+                </select>
 
-            <td>
-                <form method="post" th:action="@{/update/addWish}">
-                    <input type="hidden" name="productID" th:value="${product.getProductId()}">
+                <button type="submit">Add to wishlist</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
-                    <!-- Dropdown to select a wishlist -->
-                    <select name="wishlistID" required>
-                        <option value="" disabled selected>Select wishlist</option>
-                        <option th:each="wishlist : ${wishlists}" th:value="${wishlist.getWishlist_id()}" th:text="${wishlist.getName()}"></option>
-                    </select>
-
-                    <button type="submit">Add to wishlist</button>
-                </form>
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
 </body>
 </html>

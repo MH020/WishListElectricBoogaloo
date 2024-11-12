@@ -26,8 +26,7 @@ public class WishlistController {
     }
 
     @PostMapping("/delete/{wishlistID}")
-    public String deleteWishlist(@PathVariable int wishlist_id){
-
+    public String deleteWishlist(@PathVariable("wishlistID") int wishlist_id){
         wishlistService.deleteWishlist(wishlist_id);
         return "redirect: myHomepage";
     }
@@ -37,10 +36,11 @@ public class WishlistController {
         return "redirect: /homepage/{profileID}";
     }
 
-    @PostMapping("/update/{wishlistID}/addWish")
-    public String updateWishlistAddProduct(@PathVariable int wishlist_id,@RequestParam int product_id){
+    @PostMapping("/update/addWish")
+    public String updateWishlistAddProduct(@RequestParam int wishlist_id,@RequestParam int product_id){
+        Integer profile_id = (Integer) session.getAttribute("profile_id");
         wishlistService.updateWishlistAddProduct(product_id, wishlist_id);
-        return "redirect: market";
+        return "redirect:/homepage/" + profile_id + "/market";
     }
 
     @GetMapping("/searchbar")
