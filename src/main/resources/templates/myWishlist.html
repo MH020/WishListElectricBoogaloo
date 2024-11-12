@@ -6,26 +6,37 @@
     <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
+<header>
+    <h1 class="logo">LocalWish<span>.</span></h1>
+    <form class="logo" method="get" th:action="@{/login}" style="display:inline;">
+        <button type="submit">Log out</button>
+    </form>
+</header>
     <h1> My wishlist</h1>
     <p> endpoint: @RequestMapping(“/homepage/{profileID}/wishlist”) </br>
         @GetMapping(“/view/{wishlistID}”)
     </p>
-    <a th:href="@{/homepage/{profileID}}">Homepage</a>
+
+
+    <a th:href="@{/homepage/{profileID}(profileID = ${profileID})}">Homepage </br></a>
+
 
     <table>
-        <th>Min Seje Ønskelist B-)</th>
         <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Vendor</th>
-            <th>Description</th>
+            <th class=table-header colspan="3" th:text ="${wishlist.getName()}"> </th>
         </tr>
 
         <tr>
-            <td>Håndtaske</td>
-            <td>300 kr</td>
-            <td>Fru Hansens Kufferter</td>
-            <td>Lille håndtaske. Fås i rød, sort og brun.</td>
+            <th >Product</th>
+            <th >Price</th>
+            <th >Description</th>
+        </tr>
+
+
+        <tr th:each="product : ${wishlist.getProducts()}">
+            <td th:text="${product.getProductName()}"></td>
+            <td th:text="${product.getProductPrice()}"></td>
+            <td th:text="${product.getProductDescription()}"></td>
         </tr>
     </table>
 
