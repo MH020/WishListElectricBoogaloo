@@ -31,9 +31,9 @@
     </tr>
 
     <tr th:each="product : ${wishlist.products}">
-        <td th:text="${product.productName}"></td>
-        <td th:text="${product.productPrice}"></td>
-        <td th:text="${product.productDescription}"></td>
+        <td th:text="${product.product_name}"></td>
+        <td th:text="${product.product_price}"></td>
+        <td th:text="${product.product_description}"></td>
     </tr>
 </table>
 <p>evt kan vi have pile til ens andre ønskelister nede i bunden, så man kan bladre imellem dem.</p>

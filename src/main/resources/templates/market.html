@@ -31,14 +31,14 @@
         <td colspan="4">No products available.</td>
     </tr>
     <tr th:each="product : ${products}">
-        <td th:text="${product.productName}"></td>
-        <td th:text="${product.productPrice}"></td>
-        <td th:text="${product.productDescription}"></td>
+        <td th:text="${product.product_name}"></td>
+        <td th:text="${product.product_price}"></td>
+        <td th:text="${product.product_description}"></td>
 
         <td>
             <!-- Form to add product to wishlist -->
             <form method="post" th:action="@{/homepage/{profileID}/wishlist/update/addWish}">
-                <input type="hidden" name="product_id" th:value="${product.productId}" />
+                <input type="hidden" name="product_id" th:value="${product.product_id}" />
 
                 <!-- Label and Dropdown for selecting a wishlist -->
                 <label for="wishlistSelect">Choose wishlist:</label>

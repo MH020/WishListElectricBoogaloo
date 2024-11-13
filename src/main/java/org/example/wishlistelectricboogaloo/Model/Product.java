@@ -1,55 +1,57 @@
 package org.example.wishlistelectricboogaloo.Model;
 
 public class Product {
-    private int productId;
-    private String productName;
-    private String productDescription;
-    private double productPrice;
+    private int product_id;
+    private String product_name;
+    private String product_description;
+    private double product_price;
+
+    //Constructor
+    public Product(){}
+
+    public Product(int product_id, String product_name, String product_description, double product_price) {
+
+        this.product_id = product_id;
+        this.product_name = product_name;
+        this.product_description = product_description;
+        this.product_price = product_price;
+    }
+
+
+
 
     //Getters
-    public int getProductId() {
-        return productId;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getProduct_name() {
+        return product_name;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public String getProduct_description() {
+        return product_description;
     }
 
-    public double getProductPrice() {
-        return productPrice;
+    public double getProduct_price() {
+        return product_price;
     }
 
     //Setters
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setProduct_description(String product_description) {
+        this.product_description = product_description;
     }
 
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
+    public void setProduct_price(double product_price) {
+        this.product_price = product_price;
     }
 
-    //Constructor
-
-    public Product(int productId, String productName, String productDescription, double productPrice) {
-
-        this.productId = productId;
-        this.productName = productName;
-        this.productDescription = productDescription;
-        this.productPrice = productPrice;
-    }
-
-    public Product(){}
-    
 }
