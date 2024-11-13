@@ -4,26 +4,29 @@ public class Market {
     private int market_id;
     private String market_city;
 
+
+    //Constructor
+    public Market(int market_id, String market_city) {
+        this.market_id = market_id;
+        this.market_city = market_city;
+    }
+
+
     //Getters
-    public int getMarketId() {
+    public int getMarket_id() {
         return market_id;
     }
 
-    public String getCity() {
+    public String getMarket_city() {
         return market_city;
     }
     //Setters
-    public void setMarketId(int marketId) {
-        this.market_id = marketId;
+    public void setMarket_id(int market_id) {
+        this.market_id = market_id;
     }
 
-    public void setCity(String city) {
-        this.market_city = city;
+    public void setMarket_city(String market_city) {
+        this.market_city = market_city;
     }
 
-    //Constructor
-    public Market(int marketId, String city) {
-        this.market_id = marketId;
-        this.market_city = city;
-    }
 }
