@@ -11,6 +11,26 @@
     transition: 2s linear;
 }
 
+header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #fff;
+    padding: 2rem 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+header .logo .local{
+    color:var(--green);
+}
+
+header .logo .wish{
+    color: black;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -56,24 +76,8 @@ p {
     font-size: 1.5em; /*adjust the size as needed*/
 }
 
-header{
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: #fff;
-    padding: 2rem 8%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-}
-
-header .logo span{
-    color:var(--green);
-}
-
 input[type="text"], input[type="password"], input[type="email"], input[type="number"], textarea {
-    font-size: 1.2em; /*font size*/
+    font-size: 1em; /*font size*/
     padding: 0.1em; /*padding*/
     width: 50%; /*width on box*/
     box-sizing: border-box; /*ensure padding is included in the width*/
@@ -90,3 +94,4 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
     max-width: 700px; /*width of pictures*/
     height: auto;
 }
+
