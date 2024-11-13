@@ -10,7 +10,8 @@
     <h1 class="logo"><span>Local</span>Wish<span>.</span></h1>
 </header>
 <h1>Create new profile</h1>
-<form th:action="@{/login/newProfile}" method="post" th:object="${newProfile}">
+<form th:action="@{/login/newProfile}" method="post" th:object="${newProfile}"> <br>
+
     <label class="large-text">Username:
         <input type="text" name="username" th:value="${newProfile.username}" required>
     </label>
@@ -24,9 +25,8 @@
     </label>
     <br>
     <label class="large-text">Phone:
-        <input type="number" name="phoneNumber" th:value="${newProfile.phoneNumber}" required>
+        <input type="number" name="phoneNumber" th:value="${newProfile.phoneNumber}" required> <br>
     </label>
-    <br>
     <button type="submit">Submit</button>
 </form>
 

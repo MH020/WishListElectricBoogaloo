@@ -8,9 +8,11 @@
 <body>
 <header>
     <h1 class="logo"><span>Local</span>Wish<span>.</span></h1>
+    <form class="logo" method="get" th:action="@{/login}" style="display:inline;">
+        <button type="submit">Log out</button>
+    </form>
 </header>
 <h1>Wishlist Search</h1>
-
 <!-- Search Form -->
 <form action="/homepage/{profileID}/wishlist/searchWishlist" method="GET">
     <label for="search">Search Wishlists:</label>
