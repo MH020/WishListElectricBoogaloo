@@ -25,10 +25,10 @@
     <tbody>
     <tr th:each="market : ${allMarkets}">
         <!-- Access city and marketId directly -->
-        <td th:text="${market.getCity()}"></td>
+        <td th:text="${market.getMarket_city()}"></td>
         <td>
             <form th:action="@{/homepage/{profile_id}/addMarket(profile_id=${profile_id})}" th:object="${market_id}" method="post">
-                <input type="hidden" th:name="market_id" th:value="${market.getMarketId()}" />
+                <input type="hidden" th:name="market_id" th:value="${market.getMarket_id()}" />
                 <button type="submit">Add Market</button>
             </form>
         </td>
