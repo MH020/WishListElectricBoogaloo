@@ -21,6 +21,7 @@ public class WishlistController {
     @GetMapping("/view/{wishlistID}")
     public String getWishlist(Model model, @PathVariable("wishlistID") int wishlist_id) {
         Integer profile_id = (Integer) session.getAttribute("profile_id");
+        model.addAttribute("profile_id", profile_id);
         model.addAttribute("wishlist", wishlistService.getWishlist(profile_id, wishlist_id));
         return "myWishlist";
     }
@@ -44,12 +45,16 @@ public class WishlistController {
     }
 
     @GetMapping("/searchbar")
-    public String SearchBar(){
+    public String SearchBar(Model model){
+        Integer profile_id = (Integer) session.getAttribute("profile_id");
+        model.addAttribute("profile_id", profile_id);
         return "Searchbar";
     }
 
     @GetMapping("/searchWishlist")
     public String searchWishlist(@RequestParam(value = "search") String search, Model model){
+        Integer profile_id = (Integer) session.getAttribute("profile_id");
+        model.addAttribute("profile_id", profile_id);
         List<String> wishlistsSearchResults  = wishlistService.searchforWishlist(search);
         model.addAttribute("wishlistsSearchResults", wishlistsSearchResults);
         return "searchWishlist";
