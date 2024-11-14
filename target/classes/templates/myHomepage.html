@@ -8,7 +8,10 @@
 
 <body>
 <header>
-    <h1 class="logo"><span>Local</span>Wish<span>.</span></h1>
+    <a th:href="@{/homepage/{profileID} (profileID=${profile_id})}" class="logo">
+        <h1><span class="local">Local</span><span class="wish">Wish</span><span class="local">.</span></h1>
+    </a>
+
     <form class="logo" method="get" th:action="@{/login}" style="display:inline;">
         <button type="submit">Log out</button>
     </form>
@@ -16,35 +19,24 @@
 
 <h1>My homepage</h1>
 
-<form method="get" th:action="@{/login}" style="display:inline;">
-    <button type="submit">log ud</button>
-</form>
-
 <form method="get" th:action="@{/homepage/{profileID}/market (profileID = ${profile_id})}" style="display:inline;">
-    <button type="submit">Market</button>
+    <button type="submit">My market</button>
 </form>
 <!-- Searchbar -->
 <form method="get" th:action="@{/homepage/{profileID}/wishlist/searchbar}" style="display:inline;">
-    <button type="submit">Search</button>
+    <button type="submit">Search in wishlists</button> <br>
 </form>
 
-<p>Create new wishlist</p>
+<br><p>Create a new wishlist</p>
 <form method="post" th:action="@{/homepage/{profileID}/addWishList}" th:object="${wishlist}" style="display:inline;">
     <label for="option1">Name: </label>
     <input type="text" id="option1" name="name" th:value="${wishlist.name}"/>
     <button type="submit">Submit</button>
 </form>
 
-<table>
+<br><table>
     <tr>
         <th>My Wishlists:</th>
-    </tr>
-
-    <tr>
-        <td>navn</td>
-        <td>link</td>
-    </tr>
-
     <tr th:each="wishlist : ${wishlist_overview}">
         <td th:text="${wishlist.getName()}"></td>
         <td>
@@ -53,6 +45,5 @@
     </tr>
 
 </table>
-
 </body>
 </html>
