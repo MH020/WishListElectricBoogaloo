@@ -63,31 +63,4 @@ class LoginControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("newProfile")); //tjekker at den rigtige htmlside forwardes.
     }
-
-
-    /*
-    @Test
-    void postNewUser() throws Exception{
-        mockMvc.perform(post("/login/newProfile")
-                .sessionAttr("profile_id", 1))
-                .andExpect(model().attributeExists("profile"))
-                //.andExpect(status().is3xxRedirection())
-                .andExpect(status().isOk());
-        /*.contentType(MediaType.APPLICATION_JSON)
-                .bodyValue("""
-                   {
-                         "participantId": 1,
-                         "disciplineId": 1,
-                         "resultDate": "2023-05-05",
-                         "hours": 1,
-                         "minutes": 30,
-                         "seconds": 15,
-                         "hundredths": 50,
-                         "meters": 100,
-                         "centimeters": 50,
-                         "points": 10
-                     }
-                """)
-        //.andExpect(view().is3xxRedirection())
-    }*/
 }
