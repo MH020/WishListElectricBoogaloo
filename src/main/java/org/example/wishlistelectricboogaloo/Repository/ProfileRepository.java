@@ -40,16 +40,17 @@ public class ProfileRepository {
     // Update Method
     public void updateUser(){
     }
-    //delete Method
+    //delete Method //virker ikke :(
     public void deleteUser(int profile_id) {
         String SQL = "Select from wishlist where profile_id = ?";
         String SQL2 = "DELETE  FROM profile WHERE profile_id = ?";
         String SQL3 = "DELETE  FROM wishlist WHERE profile_id = ?";
         String SQL4 = "DELETE  FROM ProfileMarket WHERE profile_id = ?";
         String SQL5 = "DELETE  FROM ProductWishlist WHERE wishlist_id = ?";
+
         try (PreparedStatement preparedStatement = conn.prepareStatement(SQL)) {
             preparedStatement.setInt(1, profile_id);
-            preparedStatement.executeUpdate();
+            preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
