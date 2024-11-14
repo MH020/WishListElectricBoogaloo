@@ -7,19 +7,19 @@
 </head>
 <body>
 <header>
-    <h1 class="logo"><span>Local</span>Wish<span>.</span></h1>
+    <a th:href="@{/homepage/{profileID} (profileID=${profile_id})}" class="logo">
+        <h1><span class="local">Local</span><span class="wish">Wish</span><span class="local">.</span></h1>
+    </a>
+
     <form class="logo" method="get" th:action="@{/login}" style="display:inline;">
         <button type="submit">Log out</button>
     </form>
 </header>
 <h1> My wishlist</h1>
-<p> endpoint: @RequestMapping("/homepage/{profileID}/wishlist")
-    @GetMapping("/view/{wishlistID}")
-</p>
 
-<a th:href="@{/homepage/{profileID}(profileID = ${profileID})}">Homepage </a>
+<a th:href="@{/homepage/{profileID} (profileID=${profile_id})}">Back to homepage </a>
 
-<table>
+<br><table>
     <tr>
         <th class="table-header" colspan="3" th:text="${wishlist.name}"> </th>
     </tr>
@@ -36,6 +36,5 @@
         <td th:text="${product.product_description}"></td>
     </tr>
 </table>
-<p>evt kan vi have pile til ens andre ønskelister nede i bunden, så man kan bladre imellem dem.</p>
 </body>
 </html>

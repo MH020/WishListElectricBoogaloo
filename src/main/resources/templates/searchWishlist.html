@@ -2,20 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Search for Wishlists</title>
+  <title>Search for wishlists</title>
   <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
 <header>
-  <h1 class="logo"><span>Local</span>Wish<span>.</span></h1>
+  <a th:href="@{/homepage/{profileID} (profileID=${profile_id})}" class="logo">
+    <h1><span class="local">Local</span><span class="wish">Wish</span><span class="local">.</span></h1>
+  </a>
+
   <form class="logo" method="get" th:action="@{/login}" style="display:inline;">
     <button type="submit">Log out</button>
   </form>
 </header>
-<h1>Wishlist Search Results</h1>
+<h1>Wishlist search results</h1>
 
 <!-- Results Table -->
-<h2>Search Results</h2>
+<h2>Search results</h2>
 <table>
   <thead>
   <tr>
@@ -32,11 +35,11 @@
 <!-- Navigation Buttons -->
 <div style="margin-top: 20px;">
   <form th:action="@{/homepage/{profileID}/wishlist/searchbar}" method="get" style="display: inline;">
-    <button type="submit">Back to Search</button>
+    <button type="submit">Back to search</button>
   </form>
 
-  <form th:action="@{/homepage/{profileID}}" method="get" style="display: inline;">
-    <button type="submit">Back to Homepage</button>
+  <form th:action="@{/homepage/{profileID} (profileID=${profile_id})}" method="get" style="display: inline;">
+    <button type="submit">Back to homepage</button>
   </form>
 </div>
 
