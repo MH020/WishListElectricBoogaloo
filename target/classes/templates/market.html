@@ -8,7 +8,10 @@
 
 <body>
 <header>
-    <h1 class="logo"><span>Local</span>Wish<span>.</span></h1>
+    <a th:href="@{/homepage/{profileID} (profileID=${profile_id})}" class="logo">
+        <h1><span class="local">Local</span><span class="wish">Wish</span><span class="local">.</span></h1>
+    </a>
+
     <form class="logo" method="get" th:action="@{/login}" style="display:inline;">
         <button type="submit">Log out</button>
     </form>
@@ -41,7 +44,6 @@
                 <input type="hidden" name="product_id" th:value="${product.product_id}" />
 
                 <!-- Label and Dropdown for selecting a wishlist -->
-                <label for="wishlistSelect">Choose wishlist:</label>
                 <select name="wishlist_id" id="wishlistSelect" required>
                     <option value="" disabled selected>Select wishlist</option>
                     <option th:each="wishlist : ${wishlists}"

@@ -8,7 +8,10 @@
 
 <body>
 <header>
-    <h1 class="logo"><span>Local</span>Wish<span>.</span></h1>
+    <a th:href="@{/homepage/{profileID} (profileID=${profile_id})}" class="logo">
+        <h1><span>Local</span>Wish<span>.</span></h1>
+    </a>
+
     <form class="logo" method="get" th:action="@{/login}" style="display:inline;">
         <button type="submit">Log out</button>
     </form>
