@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-    private final ProfileService ProfileService;
+    private final ProfileService profileService;
     private final HttpSession session;
 
-    public LoginController(ProfileService ProfileService, HttpSession session) {
-        this.ProfileService = ProfileService;
+    public LoginController(ProfileService profileService, HttpSession session) {
+        this.profileService = profileService;
         this.session = session;
     }
 
@@ -28,7 +28,7 @@ public class LoginController {
     public String postLogin(@ModelAttribute Profile profile, HttpSession session) {
         //if the profile is authenticated, the profile is redirected to their homepage
         try {
-            Profile realUser = ProfileService.authenticateProfile(profile.getUsername(), profile.getPassword());
+            Profile realUser = profileService.authenticateProfile(profile.getUsername(), profile.getPassword());
 
             if (realUser != null) {
                 session.setAttribute("profile_id",realUser.getId());
@@ -51,7 +51,7 @@ public class LoginController {
 
     @PostMapping("/newProfile")
     public String postNewUser (@ModelAttribute Profile profile){
-        ProfileService.saveUser(profile);
+        profileService.saveUser(profile);
         return "redirect:/login";
     }
 }

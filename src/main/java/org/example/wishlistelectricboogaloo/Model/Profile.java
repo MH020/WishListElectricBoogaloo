@@ -10,7 +10,7 @@ public class Profile {
     private String email;
     private String phoneNumber;
     private List<Wishlist> wishlists; // skal vi have denne under vores profile?
-
+    
     public int getId() {
         return id;
     }
